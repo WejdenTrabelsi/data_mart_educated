@@ -55,25 +55,33 @@ def build_dim_branch(df_studyplan: pd.DataFrame) -> pd.DataFrame:
     df = df.sort_values('branch_name')
     df['branch_sk'] = range(1, len(df) + 1)
     return df[['branch_sk', 'branch_name']]
-
 def build_dim_content(df_grid: pd.DataFrame, df_content: pd.DataFrame) -> pd.DataFrame:
-    # First get unique Content OIDs from grid
+    # Get unique Content OIDs from the grids
     df = df_grid[['Content']].drop_duplicates().copy()
     df = df.rename(columns={'Content': 'content_natural_key'})
     
-    # Join with real Content table to get meaningful names
+    # Join with real Content table
     df = df.merge(
-        df_content[['Oid', 'Description']], 
+        df_content[['Oid', 'Description', 'Description2']], 
         left_on='content_natural_key', 
         right_on='Oid', 
         how='left'
     )
     
-    # Use Description as content_name, fallback to UUID if missing
-    df['content_name'] = df['Description'].fillna(df['content_natural_key'].astype(str))
+    # Priority: Use Description2 if available, then Description, then fallback
+    df['content_name'] = df['Description2'].fillna(df['Description'])
     
-    # Clean up
-    df = df.drop(columns=['Oid', 'Description'])
+    # Clean the name
+    df['content_name'] = df['content_name'].astype(str).str.strip()
+    
+    # Remove very short or useless names and replace with better fallback
+    mask_bad = (df['content_name'].str.len() < 3) | (df['content_name'] == 'nan')
+    df.loc[mask_bad, 'content_name'] = df.loc[mask_bad, 'content_natural_key'].astype(str)
+    
+    # Final fallback
+    df['content_name'] = df['content_name'].replace('nan', 'Unknown Subject')
+    
+    df = df.drop(columns=['Oid', 'Description', 'Description2'])
     df['content_sk'] = range(1, len(df) + 1)
     
     return df[['content_sk', 'content_natural_key', 'content_name']]
