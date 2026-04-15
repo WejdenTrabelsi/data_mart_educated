@@ -1,5 +1,6 @@
 import os
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, event
+from sqlalchemy.pool import NullPool
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -8,16 +9,16 @@ def get_source_engine():
     server = os.getenv('SOURCE_SERVER')
     db = os.getenv('SOURCE_DB')
     
-    # Stronger connection string for Arabic support
     conn_str = (
         f"mssql+pyodbc://{server}/{db}?"
         f"driver=ODBC+Driver+17+for+SQL+Server&"
         f"Trusted_Connection=yes&"
-        f"charset=utf8&"
-        f"autocommit=true&"
-        f"Encrypt=no"
+        f"Encrypt=no&"
+        f"autocommit=true"
+        # ← charset=utf8 removed — invalid for SQL Server, causes ???
     )
-    return create_engine(conn_str, fast_executemany=True, echo=False)
+    engine = create_engine(conn_str, fast_executemany=True, echo=False)
+    return engine
 
 def get_warehouse_engine():
     server = os.getenv('WAREHOUSE_SERVER')
@@ -27,6 +28,8 @@ def get_warehouse_engine():
         f"mssql+pyodbc://{server}/{db}?"
         f"driver=ODBC+Driver+17+for+SQL+Server&"
         f"Trusted_Connection=yes&"
-        f"charset=utf8"
+        f"Encrypt=no"
+        # ← charset=utf8 removed here too
     )
-    return create_engine(conn_str, fast_executemany=True)
+    engine = create_engine(conn_str, fast_executemany=True)
+    return engine

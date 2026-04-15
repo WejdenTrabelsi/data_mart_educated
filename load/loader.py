@@ -1,7 +1,8 @@
 from utils.db import get_warehouse_engine
 import pandas as pd
 from loguru import logger
-from sqlalchemy import text
+from sqlalchemy import text, String
+from sqlalchemy.dialects.mssql import NVARCHAR
 
 def load_dimensions(dims: dict):
     engine = get_warehouse_engine()
@@ -18,8 +19,13 @@ def load_dimensions(dims: dict):
         df = dims[key]
         logger.info(f"Loading {len(df)} rows into {table_name}")
         
-        # Load directly with correct table name using schema parameter (most reliable way)
-        df.to_sql(table_name, engine, if_exists='replace', index=False, schema=None)
+        # For DimContent, force NVARCHAR so Arabic is stored correctly
+        dtype = None
+        if key == 'dim_content':
+            dtype = {'content_name': NVARCHAR(500)}
+        
+        df.to_sql(table_name, engine, if_exists='replace', index=False, 
+                  schema=None, dtype=dtype)
     
     logger.success("✅ All dimensions loaded successfully")
 
@@ -31,8 +37,5 @@ def load_fact(fact_df: pd.DataFrame):
     
     engine = get_warehouse_engine()
     logger.info(f"Loading fact table with {len(fact_df)} rows")
-    
-    # Direct load with correct table name
     fact_df.to_sql('Fact_StudentPerformance', engine, if_exists='replace', index=False)
-    
     logger.success(f"✅ Fact_StudentPerformance loaded successfully with {len(fact_df)} rows")
