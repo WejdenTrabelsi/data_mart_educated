@@ -9,15 +9,24 @@ def build_dim_year(df_schoolyear: pd.DataFrame) -> pd.DataFrame:
     return df[['year_sk', 'year_natural_key', 'year_name']]
 
 # Quick fix: just keep one row per semester_code (ignore year)
-def build_dim_semester(df_schoolyearperiod, dim_year):
+def build_dim_semester(df_schoolyearperiod: pd.DataFrame, dim_year: pd.DataFrame) -> pd.DataFrame:
     df = df_schoolyearperiod[['Oid', 'Name', 'CurrentSchoolYear']].drop_duplicates().copy()
     df = df.rename(columns={'Oid': 'semester_natural_key', 'Name': 'semester_raw'})
+    
     df['semester_code'] = df['semester_raw'].apply(normalize_semester)
+    
+    df = df.merge(dim_year[['year_natural_key', 'year_sk']], 
+                  left_on='CurrentSchoolYear', right_on='year_natural_key', how='left')
+    
+    df = df.dropna(subset=['year_sk', 'semester_code'])
     df = df[df['semester_code'] != 'Unknown']
-    df = df.drop_duplicates(subset=['semester_code'])  # Only 3 rows: S1, S2, S3
-    df = df.sort_values('semester_code').reset_index(drop=True)
+    
+    # One row per (year_sk + semester_code) combination
+    df = df.drop_duplicates(subset=['year_sk', 'semester_code'])
+    df = df.sort_values(['year_sk', 'semester_code']).reset_index(drop=True)
     df['semester_sk'] = range(1, len(df) + 1)
-    return df[['semester_sk', 'semester_code']]
+    
+    return df[['semester_sk', 'semester_code', 'year_sk']]
 def build_dim_level(df_studyplan: pd.DataFrame) -> pd.DataFrame:
     df = df_studyplan[['SchoolLevel', 'Description']].drop_duplicates().copy()
     df = df.dropna(subset=['Description'])

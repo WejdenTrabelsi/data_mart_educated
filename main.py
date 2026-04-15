@@ -25,7 +25,7 @@ def main():
         
         # 3. Build fact
         logger.info("📊 Aggregating fact table...")
-        enriched = enrich_data(df_gridline, df_grid, df_studyplan, df_schoolyearperiod)
+        enriched = enrich_data(df_gridline, df_grid, df_studyplan, df_schoolyearperiod, dims['dim_year'])
         fact = build_fact(enriched, dims)
         
         # 4. Load
