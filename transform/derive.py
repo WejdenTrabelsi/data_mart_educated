@@ -73,9 +73,13 @@ def derive_branch(description: str) -> str:
     if re.search(r'sc|science|experimentale', desc_clean):
         return "Science"
     
-    # Catch-all for bare number codes AND "4 ème année" with no branch keyword
-    # e.g. "2--Trimestre 3", "4--Trimestre 2", "4 ème année-Trimestre-1"
-    if re.search(r'^\d', desc_clean):
-        return "General"
+    # Bare codes like "2--Trimestre 3", "4--Trimestre 2", "4 ème année-Trimestre-1"
+    # These have NO branch keyword — use Science as default for years 2/3/4
+    if re.search(r'^2', desc_clean):
+        return "Science"  # 2ème année default
+    if re.search(r'^3', desc_clean):
+        return "Science"  # 3ème année default
+    if re.search(r'^4', desc_clean):
+        return "Science"  # 4ème année default
     
     return "Unknown"
