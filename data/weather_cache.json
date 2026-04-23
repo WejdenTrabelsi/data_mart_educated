@@ -1,0 +1,2603 @@
+[
+  {
+    "weather_date": "2020-09-15",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.2,
+    "temp_min_f": 72.2,
+    "temp_avg_f": 78.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-16",
+    "weather_condition": "Clear",
+    "temp_max_f": 87.1,
+    "temp_min_f": 74.5,
+    "temp_avg_f": 81.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-17",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.7,
+    "temp_min_f": 71.5,
+    "temp_avg_f": 75.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-18",
+    "weather_condition": "Clear",
+    "temp_max_f": 75.8,
+    "temp_min_f": 68.7,
+    "temp_avg_f": 75.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-19",
+    "weather_condition": "Clear",
+    "temp_max_f": 79.6,
+    "temp_min_f": 70.8,
+    "temp_avg_f": 74.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-20",
+    "weather_condition": "Clear",
+    "temp_max_f": 76.5,
+    "temp_min_f": 66.6,
+    "temp_avg_f": 72.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-21",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 80.6,
+    "temp_min_f": 72.7,
+    "temp_avg_f": 75.4,
+    "precipitation": 0.3,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2020-09-22",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.9,
+    "temp_min_f": 73.7,
+    "temp_avg_f": 78.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-23",
+    "weather_condition": "Clear",
+    "temp_max_f": 78.6,
+    "temp_min_f": 70.0,
+    "temp_avg_f": 73.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-24",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.6,
+    "temp_min_f": 74.4,
+    "temp_avg_f": 77.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-25",
+    "weather_condition": "Clear",
+    "temp_max_f": 92.7,
+    "temp_min_f": 79.9,
+    "temp_avg_f": 85.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-26",
+    "weather_condition": "Clear",
+    "temp_max_f": 84.4,
+    "temp_min_f": 75.2,
+    "temp_avg_f": 79.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-27",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.2,
+    "temp_min_f": 77.0,
+    "temp_avg_f": 79.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-28",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 80.0,
+    "temp_min_f": 70.1,
+    "temp_avg_f": 74.4,
+    "precipitation": 0.43,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2020-09-29",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.2,
+    "temp_min_f": 67.9,
+    "temp_avg_f": 75.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-09-30",
+    "weather_condition": "Clear",
+    "temp_max_f": 84.4,
+    "temp_min_f": 76.0,
+    "temp_avg_f": 79.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-01",
+    "weather_condition": "Clear",
+    "temp_max_f": 84.9,
+    "temp_min_f": 74.0,
+    "temp_avg_f": 78.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-02",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.8,
+    "temp_min_f": 73.2,
+    "temp_avg_f": 76.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-03",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.8,
+    "temp_min_f": 71.1,
+    "temp_avg_f": 76.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-04",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.1,
+    "temp_min_f": 69.4,
+    "temp_avg_f": 75.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-05",
+    "weather_condition": "Clear",
+    "temp_max_f": 75.8,
+    "temp_min_f": 64.0,
+    "temp_avg_f": 69.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-06",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.9,
+    "temp_min_f": 71.1,
+    "temp_avg_f": 76.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-07",
+    "weather_condition": "Clear",
+    "temp_max_f": 85.4,
+    "temp_min_f": 78.1,
+    "temp_avg_f": 81.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-08",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.5,
+    "temp_min_f": 68.2,
+    "temp_avg_f": 75.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-09",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.4,
+    "temp_min_f": 70.2,
+    "temp_avg_f": 75.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-10",
+    "weather_condition": "Clear",
+    "temp_max_f": 84.3,
+    "temp_min_f": 73.6,
+    "temp_avg_f": 79.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-11",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 77.9,
+    "temp_min_f": 70.2,
+    "temp_avg_f": 75.8,
+    "precipitation": 0.07,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2020-10-12",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.0,
+    "temp_min_f": 73.6,
+    "temp_avg_f": 77.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-13",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.0,
+    "temp_min_f": 72.9,
+    "temp_avg_f": 78.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-14",
+    "weather_condition": "Clear",
+    "temp_max_f": 76.4,
+    "temp_min_f": 66.1,
+    "temp_avg_f": 70.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-15",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 78.6,
+    "temp_min_f": 74.1,
+    "temp_avg_f": 76.9,
+    "precipitation": 0.09,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2020-10-16",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.7,
+    "temp_min_f": 69.0,
+    "temp_avg_f": 74.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-17",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.0,
+    "temp_min_f": 71.5,
+    "temp_avg_f": 76.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-18",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.0,
+    "temp_min_f": 70.8,
+    "temp_avg_f": 73.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-19",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.6,
+    "temp_min_f": 71.6,
+    "temp_avg_f": 79.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-20",
+    "weather_condition": "Clear",
+    "temp_max_f": 76.0,
+    "temp_min_f": 67.6,
+    "temp_avg_f": 72.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-21",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.9,
+    "temp_min_f": 68.8,
+    "temp_avg_f": 74.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-22",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.5,
+    "temp_min_f": 71.2,
+    "temp_avg_f": 75.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-23",
+    "weather_condition": "Clear",
+    "temp_max_f": 79.8,
+    "temp_min_f": 70.7,
+    "temp_avg_f": 73.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-24",
+    "weather_condition": "Clear",
+    "temp_max_f": 85.9,
+    "temp_min_f": 78.4,
+    "temp_avg_f": 81.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-25",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.0,
+    "temp_min_f": 74.0,
+    "temp_avg_f": 79.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-26",
+    "weather_condition": "Clear",
+    "temp_max_f": 85.3,
+    "temp_min_f": 76.3,
+    "temp_avg_f": 80.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-27",
+    "weather_condition": "Clear",
+    "temp_max_f": 84.3,
+    "temp_min_f": 75.3,
+    "temp_avg_f": 77.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-28",
+    "weather_condition": "Clear",
+    "temp_max_f": 79.3,
+    "temp_min_f": 65.6,
+    "temp_avg_f": 73.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-29",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.5,
+    "temp_min_f": 69.1,
+    "temp_avg_f": 77.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-30",
+    "weather_condition": "Clear",
+    "temp_max_f": 84.9,
+    "temp_min_f": 75.3,
+    "temp_avg_f": 78.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-10-31",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.8,
+    "temp_min_f": 73.5,
+    "temp_avg_f": 80.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-01",
+    "weather_condition": "Clear",
+    "temp_max_f": 72.5,
+    "temp_min_f": 63.9,
+    "temp_avg_f": 69.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-02",
+    "weather_condition": "Clear",
+    "temp_max_f": 68.7,
+    "temp_min_f": 60.5,
+    "temp_avg_f": 65.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-03",
+    "weather_condition": "Clear",
+    "temp_max_f": 76.4,
+    "temp_min_f": 62.9,
+    "temp_avg_f": 69.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-04",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.6,
+    "temp_min_f": 61.0,
+    "temp_avg_f": 67.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-05",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.5,
+    "temp_min_f": 60.7,
+    "temp_avg_f": 65.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-06",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.8,
+    "temp_min_f": 61.4,
+    "temp_avg_f": 67.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-07",
+    "weather_condition": "Clear",
+    "temp_max_f": 71.9,
+    "temp_min_f": 61.2,
+    "temp_avg_f": 67.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-08",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.4,
+    "temp_min_f": 61.2,
+    "temp_avg_f": 66.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-09",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 70.5,
+    "temp_min_f": 55.7,
+    "temp_avg_f": 64.3,
+    "precipitation": 0.1,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2020-11-10",
+    "weather_condition": "Clear",
+    "temp_max_f": 76.3,
+    "temp_min_f": 64.4,
+    "temp_avg_f": 71.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-11",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.4,
+    "temp_min_f": 68.1,
+    "temp_avg_f": 71.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-12",
+    "weather_condition": "Clear",
+    "temp_max_f": 74.4,
+    "temp_min_f": 63.9,
+    "temp_avg_f": 68.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-13",
+    "weather_condition": "Clear",
+    "temp_max_f": 76.8,
+    "temp_min_f": 63.3,
+    "temp_avg_f": 70.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-14",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 74.0,
+    "temp_min_f": 66.0,
+    "temp_avg_f": 68.7,
+    "precipitation": 0.09,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2020-11-15",
+    "weather_condition": "Clear",
+    "temp_max_f": 68.4,
+    "temp_min_f": 59.6,
+    "temp_avg_f": 63.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-16",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 71.8,
+    "temp_min_f": 66.0,
+    "temp_avg_f": 70.1,
+    "precipitation": 0.07,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2020-11-17",
+    "weather_condition": "Clear",
+    "temp_max_f": 74.8,
+    "temp_min_f": 64.9,
+    "temp_avg_f": 71.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-18",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.9,
+    "temp_min_f": 67.4,
+    "temp_avg_f": 75.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-19",
+    "weather_condition": "Clear",
+    "temp_max_f": 71.4,
+    "temp_min_f": 65.1,
+    "temp_avg_f": 70.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-20",
+    "weather_condition": "Clear",
+    "temp_max_f": 68.3,
+    "temp_min_f": 63.2,
+    "temp_avg_f": 66.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-21",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.0,
+    "temp_min_f": 69.3,
+    "temp_avg_f": 73.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-22",
+    "weather_condition": "Clear",
+    "temp_max_f": 78.4,
+    "temp_min_f": 65.1,
+    "temp_avg_f": 70.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-23",
+    "weather_condition": "Clear",
+    "temp_max_f": 74.9,
+    "temp_min_f": 68.9,
+    "temp_avg_f": 73.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-24",
+    "weather_condition": "Clear",
+    "temp_max_f": 76.0,
+    "temp_min_f": 62.3,
+    "temp_avg_f": 67.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-25",
+    "weather_condition": "Clear",
+    "temp_max_f": 69.7,
+    "temp_min_f": 62.7,
+    "temp_avg_f": 65.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-26",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.3,
+    "temp_min_f": 67.9,
+    "temp_avg_f": 72.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-27",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.9,
+    "temp_min_f": 61.6,
+    "temp_avg_f": 66.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-28",
+    "weather_condition": "Clear",
+    "temp_max_f": 72.5,
+    "temp_min_f": 61.1,
+    "temp_avg_f": 67.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-29",
+    "weather_condition": "Clear",
+    "temp_max_f": 76.6,
+    "temp_min_f": 65.9,
+    "temp_avg_f": 68.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-11-30",
+    "weather_condition": "Clear",
+    "temp_max_f": 75.2,
+    "temp_min_f": 64.2,
+    "temp_avg_f": 70.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-01",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 65.2,
+    "temp_min_f": 55.9,
+    "temp_avg_f": 59.7,
+    "precipitation": 0.04,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2020-12-02",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.9,
+    "temp_min_f": 52.5,
+    "temp_avg_f": 58.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-03",
+    "weather_condition": "Clear",
+    "temp_max_f": 63.6,
+    "temp_min_f": 51.8,
+    "temp_avg_f": 57.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-04",
+    "weather_condition": "Clear",
+    "temp_max_f": 61.4,
+    "temp_min_f": 51.0,
+    "temp_avg_f": 57.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-05",
+    "weather_condition": "Clear",
+    "temp_max_f": 63.3,
+    "temp_min_f": 59.3,
+    "temp_avg_f": 61.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-06",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.2,
+    "temp_min_f": 57.1,
+    "temp_avg_f": 61.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-07",
+    "weather_condition": "Clear",
+    "temp_max_f": 67.5,
+    "temp_min_f": 57.8,
+    "temp_avg_f": 63.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-08",
+    "weather_condition": "Clear",
+    "temp_max_f": 69.0,
+    "temp_min_f": 57.6,
+    "temp_avg_f": 63.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-09",
+    "weather_condition": "Clear",
+    "temp_max_f": 63.5,
+    "temp_min_f": 55.3,
+    "temp_avg_f": 59.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-10",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.5,
+    "temp_min_f": 56.9,
+    "temp_avg_f": 60.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-11",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.7,
+    "temp_min_f": 63.7,
+    "temp_avg_f": 66.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-12",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 68.1,
+    "temp_min_f": 56.9,
+    "temp_avg_f": 61.9,
+    "precipitation": 0.08,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2020-12-13",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.3,
+    "temp_min_f": 52.6,
+    "temp_avg_f": 57.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-14",
+    "weather_condition": "Clear",
+    "temp_max_f": 69.6,
+    "temp_min_f": 57.7,
+    "temp_avg_f": 61.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-15",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 64.7,
+    "temp_min_f": 55.1,
+    "temp_avg_f": 60.6,
+    "precipitation": 0.43,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2020-12-16",
+    "weather_condition": "Clear",
+    "temp_max_f": 57.8,
+    "temp_min_f": 52.1,
+    "temp_avg_f": 55.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-17",
+    "weather_condition": "Clear",
+    "temp_max_f": 60.3,
+    "temp_min_f": 51.2,
+    "temp_avg_f": 59.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-18",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 62.9,
+    "temp_min_f": 55.0,
+    "temp_avg_f": 59.9,
+    "precipitation": 0.01,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2020-12-19",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.8,
+    "temp_min_f": 55.8,
+    "temp_avg_f": 59.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-20",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.7,
+    "temp_min_f": 59.4,
+    "temp_avg_f": 61.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-21",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 62.9,
+    "temp_min_f": 52.4,
+    "temp_avg_f": 57.5,
+    "precipitation": 0.08,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2020-12-22",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.1,
+    "temp_min_f": 52.2,
+    "temp_avg_f": 60.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-23",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.3,
+    "temp_min_f": 54.2,
+    "temp_avg_f": 62.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-24",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.0,
+    "temp_min_f": 63.2,
+    "temp_avg_f": 66.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-25",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 65.3,
+    "temp_min_f": 56.8,
+    "temp_avg_f": 58.2,
+    "precipitation": 0.37,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2020-12-26",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 60.0,
+    "temp_min_f": 48.1,
+    "temp_avg_f": 54.3,
+    "precipitation": 0.24,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2020-12-27",
+    "weather_condition": "Clear",
+    "temp_max_f": 69.4,
+    "temp_min_f": 55.0,
+    "temp_avg_f": 62.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-28",
+    "weather_condition": "Clear",
+    "temp_max_f": 67.6,
+    "temp_min_f": 62.0,
+    "temp_avg_f": 63.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-29",
+    "weather_condition": "Clear",
+    "temp_max_f": 69.6,
+    "temp_min_f": 58.5,
+    "temp_avg_f": 64.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-30",
+    "weather_condition": "Clear",
+    "temp_max_f": 59.0,
+    "temp_min_f": 50.2,
+    "temp_avg_f": 55.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2020-12-31",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 64.5,
+    "temp_min_f": 58.3,
+    "temp_avg_f": 60.1,
+    "precipitation": 0.31,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2021-01-01",
+    "weather_condition": "Clear",
+    "temp_max_f": 62.0,
+    "temp_min_f": 48.8,
+    "temp_avg_f": 55.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-02",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.3,
+    "temp_min_f": 61.1,
+    "temp_avg_f": 64.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-03",
+    "weather_condition": "Clear",
+    "temp_max_f": 68.4,
+    "temp_min_f": 55.0,
+    "temp_avg_f": 60.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-04",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 68.0,
+    "temp_min_f": 56.5,
+    "temp_avg_f": 63.5,
+    "precipitation": 0.0,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-01-05",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 69.7,
+    "temp_min_f": 58.9,
+    "temp_avg_f": 61.9,
+    "precipitation": 0.0,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-01-06",
+    "weather_condition": "Clear",
+    "temp_max_f": 69.2,
+    "temp_min_f": 60.6,
+    "temp_avg_f": 62.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-07",
+    "weather_condition": "Clear",
+    "temp_max_f": 67.4,
+    "temp_min_f": 57.3,
+    "temp_avg_f": 62.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-08",
+    "weather_condition": "Clear",
+    "temp_max_f": 61.7,
+    "temp_min_f": 51.2,
+    "temp_avg_f": 53.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-09",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.5,
+    "temp_min_f": 55.5,
+    "temp_avg_f": 60.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-10",
+    "weather_condition": "Clear",
+    "temp_max_f": 55.9,
+    "temp_min_f": 50.2,
+    "temp_avg_f": 55.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-11",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.5,
+    "temp_min_f": 56.8,
+    "temp_avg_f": 59.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-12",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.3,
+    "temp_min_f": 54.6,
+    "temp_avg_f": 61.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-13",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 62.7,
+    "temp_min_f": 55.3,
+    "temp_avg_f": 58.7,
+    "precipitation": 0.01,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-01-14",
+    "weather_condition": "Clear",
+    "temp_max_f": 60.5,
+    "temp_min_f": 53.7,
+    "temp_avg_f": 58.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-15",
+    "weather_condition": "Clear",
+    "temp_max_f": 71.0,
+    "temp_min_f": 62.3,
+    "temp_avg_f": 65.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-16",
+    "weather_condition": "Clear",
+    "temp_max_f": 67.3,
+    "temp_min_f": 56.9,
+    "temp_avg_f": 60.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-17",
+    "weather_condition": "Clear",
+    "temp_max_f": 62.3,
+    "temp_min_f": 54.0,
+    "temp_avg_f": 58.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-18",
+    "weather_condition": "Clear",
+    "temp_max_f": 56.8,
+    "temp_min_f": 52.5,
+    "temp_avg_f": 53.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-19",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 67.4,
+    "temp_min_f": 50.6,
+    "temp_avg_f": 61.7,
+    "precipitation": 0.06,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-01-20",
+    "weather_condition": "Clear",
+    "temp_max_f": 65.1,
+    "temp_min_f": 58.0,
+    "temp_avg_f": 63.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-21",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.3,
+    "temp_min_f": 56.6,
+    "temp_avg_f": 59.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-22",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.4,
+    "temp_min_f": 51.3,
+    "temp_avg_f": 58.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-23",
+    "weather_condition": "Clear",
+    "temp_max_f": 62.4,
+    "temp_min_f": 47.6,
+    "temp_avg_f": 57.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-24",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.0,
+    "temp_min_f": 58.4,
+    "temp_avg_f": 63.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-25",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.6,
+    "temp_min_f": 63.0,
+    "temp_avg_f": 64.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-26",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 65.0,
+    "temp_min_f": 56.7,
+    "temp_avg_f": 62.8,
+    "precipitation": 0.02,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-01-27",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 62.1,
+    "temp_min_f": 54.2,
+    "temp_avg_f": 58.0,
+    "precipitation": 0.23,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2021-01-28",
+    "weather_condition": "Clear",
+    "temp_max_f": 62.5,
+    "temp_min_f": 54.1,
+    "temp_avg_f": 57.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-29",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.0,
+    "temp_min_f": 55.7,
+    "temp_avg_f": 61.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-30",
+    "weather_condition": "Clear",
+    "temp_max_f": 66.8,
+    "temp_min_f": 57.8,
+    "temp_avg_f": 60.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-01-31",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 74.4,
+    "temp_min_f": 59.3,
+    "temp_avg_f": 66.1,
+    "precipitation": 0.04,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-02-01",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 63.3,
+    "temp_min_f": 57.2,
+    "temp_avg_f": 57.7,
+    "precipitation": 0.01,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-02-02",
+    "weather_condition": "Clear",
+    "temp_max_f": 62.0,
+    "temp_min_f": 52.7,
+    "temp_avg_f": 55.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-03",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.5,
+    "temp_min_f": 55.7,
+    "temp_avg_f": 60.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-04",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.7,
+    "temp_min_f": 51.0,
+    "temp_avg_f": 58.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-05",
+    "weather_condition": "Clear",
+    "temp_max_f": 62.4,
+    "temp_min_f": 58.9,
+    "temp_avg_f": 62.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-06",
+    "weather_condition": "Clear",
+    "temp_max_f": 65.7,
+    "temp_min_f": 54.5,
+    "temp_avg_f": 60.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-07",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 70.4,
+    "temp_min_f": 60.6,
+    "temp_avg_f": 64.7,
+    "precipitation": 0.02,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-02-08",
+    "weather_condition": "Clear",
+    "temp_max_f": 65.3,
+    "temp_min_f": 55.6,
+    "temp_avg_f": 61.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-09",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.7,
+    "temp_min_f": 59.3,
+    "temp_avg_f": 66.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-10",
+    "weather_condition": "Clear",
+    "temp_max_f": 56.9,
+    "temp_min_f": 52.6,
+    "temp_avg_f": 53.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-11",
+    "weather_condition": "Clear",
+    "temp_max_f": 60.8,
+    "temp_min_f": 53.9,
+    "temp_avg_f": 58.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-12",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 63.1,
+    "temp_min_f": 57.0,
+    "temp_avg_f": 62.5,
+    "precipitation": 0.28,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2021-02-13",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 64.4,
+    "temp_min_f": 55.0,
+    "temp_avg_f": 62.3,
+    "precipitation": 0.16,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-02-14",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 71.4,
+    "temp_min_f": 56.5,
+    "temp_avg_f": 61.9,
+    "precipitation": 0.04,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-02-15",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 67.4,
+    "temp_min_f": 57.5,
+    "temp_avg_f": 60.7,
+    "precipitation": 0.08,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-02-16",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 67.1,
+    "temp_min_f": 54.4,
+    "temp_avg_f": 61.4,
+    "precipitation": 0.19,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-02-17",
+    "weather_condition": "Clear",
+    "temp_max_f": 62.9,
+    "temp_min_f": 55.4,
+    "temp_avg_f": 58.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-18",
+    "weather_condition": "Clear",
+    "temp_max_f": 62.6,
+    "temp_min_f": 51.8,
+    "temp_avg_f": 58.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-19",
+    "weather_condition": "Clear",
+    "temp_max_f": 68.7,
+    "temp_min_f": 54.2,
+    "temp_avg_f": 62.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-20",
+    "weather_condition": "Clear",
+    "temp_max_f": 60.8,
+    "temp_min_f": 51.5,
+    "temp_avg_f": 56.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-21",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 68.8,
+    "temp_min_f": 57.6,
+    "temp_avg_f": 62.5,
+    "precipitation": 0.09,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-02-22",
+    "weather_condition": "Clear",
+    "temp_max_f": 72.6,
+    "temp_min_f": 62.1,
+    "temp_avg_f": 67.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-23",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 67.6,
+    "temp_min_f": 56.3,
+    "temp_avg_f": 62.2,
+    "precipitation": 0.09,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-02-24",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.7,
+    "temp_min_f": 50.6,
+    "temp_avg_f": 56.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-25",
+    "weather_condition": "Clear",
+    "temp_max_f": 63.3,
+    "temp_min_f": 55.6,
+    "temp_avg_f": 60.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-26",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.7,
+    "temp_min_f": 63.8,
+    "temp_avg_f": 67.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-27",
+    "weather_condition": "Clear",
+    "temp_max_f": 62.6,
+    "temp_min_f": 57.9,
+    "temp_avg_f": 59.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-02-28",
+    "weather_condition": "Clear",
+    "temp_max_f": 65.6,
+    "temp_min_f": 51.8,
+    "temp_avg_f": 59.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-01",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 70.0,
+    "temp_min_f": 63.6,
+    "temp_avg_f": 65.5,
+    "precipitation": 0.02,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-03-02",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.8,
+    "temp_min_f": 55.4,
+    "temp_avg_f": 59.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-03",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.1,
+    "temp_min_f": 64.1,
+    "temp_avg_f": 70.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-04",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 70.0,
+    "temp_min_f": 57.0,
+    "temp_avg_f": 67.2,
+    "precipitation": 0.14,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-03-05",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.6,
+    "temp_min_f": 63.5,
+    "temp_avg_f": 68.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-06",
+    "weather_condition": "Clear",
+    "temp_max_f": 78.5,
+    "temp_min_f": 67.9,
+    "temp_avg_f": 75.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-07",
+    "weather_condition": "Clear",
+    "temp_max_f": 67.5,
+    "temp_min_f": 59.2,
+    "temp_avg_f": 60.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-08",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.4,
+    "temp_min_f": 64.2,
+    "temp_avg_f": 68.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-09",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 72.4,
+    "temp_min_f": 61.1,
+    "temp_avg_f": 69.6,
+    "precipitation": 0.02,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-03-10",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 78.4,
+    "temp_min_f": 64.4,
+    "temp_avg_f": 70.8,
+    "precipitation": 0.01,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-03-11",
+    "weather_condition": "Clear",
+    "temp_max_f": 68.6,
+    "temp_min_f": 58.6,
+    "temp_avg_f": 64.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-12",
+    "weather_condition": "Clear",
+    "temp_max_f": 71.5,
+    "temp_min_f": 60.3,
+    "temp_avg_f": 66.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-13",
+    "weather_condition": "Clear",
+    "temp_max_f": 69.5,
+    "temp_min_f": 57.9,
+    "temp_avg_f": 65.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-14",
+    "weather_condition": "Clear",
+    "temp_max_f": 69.2,
+    "temp_min_f": 64.4,
+    "temp_avg_f": 66.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-15",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.2,
+    "temp_min_f": 66.2,
+    "temp_avg_f": 73.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-16",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.4,
+    "temp_min_f": 65.4,
+    "temp_avg_f": 71.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-17",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.6,
+    "temp_min_f": 55.4,
+    "temp_avg_f": 63.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-18",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 75.9,
+    "temp_min_f": 66.6,
+    "temp_avg_f": 70.9,
+    "precipitation": 0.03,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-03-19",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.3,
+    "temp_min_f": 65.7,
+    "temp_avg_f": 72.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-20",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.1,
+    "temp_min_f": 63.5,
+    "temp_avg_f": 68.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-21",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.8,
+    "temp_min_f": 62.9,
+    "temp_avg_f": 69.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-22",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.0,
+    "temp_min_f": 65.6,
+    "temp_avg_f": 71.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-23",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.9,
+    "temp_min_f": 64.9,
+    "temp_avg_f": 70.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-24",
+    "weather_condition": "Clear",
+    "temp_max_f": 64.9,
+    "temp_min_f": 58.7,
+    "temp_avg_f": 62.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-25",
+    "weather_condition": "Clear",
+    "temp_max_f": 72.4,
+    "temp_min_f": 62.7,
+    "temp_avg_f": 68.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-26",
+    "weather_condition": "Clear",
+    "temp_max_f": 68.4,
+    "temp_min_f": 63.0,
+    "temp_avg_f": 66.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-27",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.1,
+    "temp_min_f": 62.5,
+    "temp_avg_f": 63.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-28",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 74.8,
+    "temp_min_f": 66.2,
+    "temp_avg_f": 69.5,
+    "precipitation": 0.03,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-03-29",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.9,
+    "temp_min_f": 64.9,
+    "temp_avg_f": 70.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-03-30",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 69.9,
+    "temp_min_f": 58.6,
+    "temp_avg_f": 62.9,
+    "precipitation": 0.13,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-03-31",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.7,
+    "temp_min_f": 63.8,
+    "temp_avg_f": 68.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-01",
+    "weather_condition": "Clear",
+    "temp_max_f": 74.0,
+    "temp_min_f": 63.9,
+    "temp_avg_f": 70.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-02",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 72.4,
+    "temp_min_f": 63.6,
+    "temp_avg_f": 70.9,
+    "precipitation": 0.25,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2021-04-03",
+    "weather_condition": "Clear",
+    "temp_max_f": 68.6,
+    "temp_min_f": 56.9,
+    "temp_avg_f": 64.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-04",
+    "weather_condition": "Clear",
+    "temp_max_f": 74.5,
+    "temp_min_f": 61.2,
+    "temp_avg_f": 68.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-05",
+    "weather_condition": "Clear",
+    "temp_max_f": 72.9,
+    "temp_min_f": 64.7,
+    "temp_avg_f": 66.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-06",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.7,
+    "temp_min_f": 62.4,
+    "temp_avg_f": 67.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-07",
+    "weather_condition": "Clear",
+    "temp_max_f": 75.7,
+    "temp_min_f": 64.6,
+    "temp_avg_f": 70.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-08",
+    "weather_condition": "Clear",
+    "temp_max_f": 72.3,
+    "temp_min_f": 61.0,
+    "temp_avg_f": 67.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-09",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 73.4,
+    "temp_min_f": 64.4,
+    "temp_avg_f": 66.6,
+    "precipitation": 0.01,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-04-10",
+    "weather_condition": "Clear",
+    "temp_max_f": 72.4,
+    "temp_min_f": 61.9,
+    "temp_avg_f": 69.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-11",
+    "weather_condition": "Clear",
+    "temp_max_f": 71.6,
+    "temp_min_f": 59.5,
+    "temp_avg_f": 67.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-12",
+    "weather_condition": "Clear",
+    "temp_max_f": 75.3,
+    "temp_min_f": 63.0,
+    "temp_avg_f": 68.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-13",
+    "weather_condition": "Clear",
+    "temp_max_f": 75.4,
+    "temp_min_f": 64.3,
+    "temp_avg_f": 68.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-14",
+    "weather_condition": "Clear",
+    "temp_max_f": 79.1,
+    "temp_min_f": 66.6,
+    "temp_avg_f": 72.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-15",
+    "weather_condition": "Clear",
+    "temp_max_f": 74.6,
+    "temp_min_f": 58.5,
+    "temp_avg_f": 66.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-16",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.8,
+    "temp_min_f": 63.0,
+    "temp_avg_f": 66.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-17",
+    "weather_condition": "Clear",
+    "temp_max_f": 68.5,
+    "temp_min_f": 60.1,
+    "temp_avg_f": 65.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-18",
+    "weather_condition": "Clear",
+    "temp_max_f": 71.6,
+    "temp_min_f": 62.3,
+    "temp_avg_f": 68.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-19",
+    "weather_condition": "Clear",
+    "temp_max_f": 75.5,
+    "temp_min_f": 66.1,
+    "temp_avg_f": 71.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-20",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.4,
+    "temp_min_f": 61.8,
+    "temp_avg_f": 70.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-21",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.0,
+    "temp_min_f": 62.3,
+    "temp_avg_f": 66.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-22",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.3,
+    "temp_min_f": 61.7,
+    "temp_avg_f": 66.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-23",
+    "weather_condition": "Clear",
+    "temp_max_f": 76.1,
+    "temp_min_f": 68.9,
+    "temp_avg_f": 72.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-24",
+    "weather_condition": "Clear",
+    "temp_max_f": 73.0,
+    "temp_min_f": 65.8,
+    "temp_avg_f": 69.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-25",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.2,
+    "temp_min_f": 68.9,
+    "temp_avg_f": 72.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-26",
+    "weather_condition": "Clear",
+    "temp_max_f": 72.9,
+    "temp_min_f": 59.7,
+    "temp_avg_f": 66.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-27",
+    "weather_condition": "Clear",
+    "temp_max_f": 70.9,
+    "temp_min_f": 65.2,
+    "temp_avg_f": 67.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-28",
+    "weather_condition": "Clear",
+    "temp_max_f": 69.1,
+    "temp_min_f": 60.8,
+    "temp_avg_f": 65.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-29",
+    "weather_condition": "Clear",
+    "temp_max_f": 71.9,
+    "temp_min_f": 61.5,
+    "temp_avg_f": 66.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-04-30",
+    "weather_condition": "Clear",
+    "temp_max_f": 79.0,
+    "temp_min_f": 65.9,
+    "temp_avg_f": 71.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-01",
+    "weather_condition": "Clear",
+    "temp_max_f": 87.7,
+    "temp_min_f": 72.9,
+    "temp_avg_f": 79.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-02",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.8,
+    "temp_min_f": 70.1,
+    "temp_avg_f": 75.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-03",
+    "weather_condition": "Clear",
+    "temp_max_f": 85.5,
+    "temp_min_f": 72.3,
+    "temp_avg_f": 79.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-04",
+    "weather_condition": "Clear",
+    "temp_max_f": 84.2,
+    "temp_min_f": 74.5,
+    "temp_avg_f": 80.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-05",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.8,
+    "temp_min_f": 69.1,
+    "temp_avg_f": 76.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-06",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.4,
+    "temp_min_f": 68.7,
+    "temp_avg_f": 74.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-07",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.7,
+    "temp_min_f": 75.3,
+    "temp_avg_f": 77.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-08",
+    "weather_condition": "Clear",
+    "temp_max_f": 87.2,
+    "temp_min_f": 73.8,
+    "temp_avg_f": 79.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-09",
+    "weather_condition": "Clear",
+    "temp_max_f": 85.9,
+    "temp_min_f": 72.9,
+    "temp_avg_f": 77.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-10",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 83.2,
+    "temp_min_f": 72.0,
+    "temp_avg_f": 77.8,
+    "precipitation": 0.04,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-05-11",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.3,
+    "temp_min_f": 74.5,
+    "temp_avg_f": 75.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-12",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.8,
+    "temp_min_f": 74.1,
+    "temp_avg_f": 79.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-13",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.5,
+    "temp_min_f": 70.1,
+    "temp_avg_f": 76.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-14",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.3,
+    "temp_min_f": 79.6,
+    "temp_avg_f": 80.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-15",
+    "weather_condition": "Clear",
+    "temp_max_f": 85.9,
+    "temp_min_f": 71.7,
+    "temp_avg_f": 78.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-16",
+    "weather_condition": "Clear",
+    "temp_max_f": 87.2,
+    "temp_min_f": 76.1,
+    "temp_avg_f": 80.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-17",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.6,
+    "temp_min_f": 66.5,
+    "temp_avg_f": 73.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-18",
+    "weather_condition": "Clear",
+    "temp_max_f": 78.9,
+    "temp_min_f": 68.5,
+    "temp_avg_f": 76.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-19",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.5,
+    "temp_min_f": 73.0,
+    "temp_avg_f": 78.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-20",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.4,
+    "temp_min_f": 70.4,
+    "temp_avg_f": 76.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-21",
+    "weather_condition": "Clear",
+    "temp_max_f": 79.8,
+    "temp_min_f": 66.7,
+    "temp_avg_f": 74.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-22",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.1,
+    "temp_min_f": 69.9,
+    "temp_avg_f": 78.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-23",
+    "weather_condition": "Clear",
+    "temp_max_f": 79.7,
+    "temp_min_f": 73.0,
+    "temp_avg_f": 74.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-24",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 82.8,
+    "temp_min_f": 77.5,
+    "temp_avg_f": 78.7,
+    "precipitation": 0.01,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-05-25",
+    "weather_condition": "Clear",
+    "temp_max_f": 75.8,
+    "temp_min_f": 73.8,
+    "temp_avg_f": 75.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-26",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 85.0,
+    "temp_min_f": 73.3,
+    "temp_avg_f": 79.3,
+    "precipitation": 0.07,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-05-27",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.4,
+    "temp_min_f": 66.4,
+    "temp_avg_f": 76.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-28",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.5,
+    "temp_min_f": 71.9,
+    "temp_avg_f": 76.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-29",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 79.4,
+    "temp_min_f": 69.9,
+    "temp_avg_f": 74.4,
+    "precipitation": 0.05,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-05-30",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.1,
+    "temp_min_f": 73.9,
+    "temp_avg_f": 76.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-05-31",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 81.4,
+    "temp_min_f": 67.5,
+    "temp_avg_f": 75.3,
+    "precipitation": 0.28,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2021-06-01",
+    "weather_condition": "Clear",
+    "temp_max_f": 84.9,
+    "temp_min_f": 76.1,
+    "temp_avg_f": 79.8,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-02",
+    "weather_condition": "Clear",
+    "temp_max_f": 84.5,
+    "temp_min_f": 74.3,
+    "temp_avg_f": 78.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-03",
+    "weather_condition": "Clear",
+    "temp_max_f": 87.9,
+    "temp_min_f": 74.9,
+    "temp_avg_f": 80.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-04",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 87.6,
+    "temp_min_f": 73.9,
+    "temp_avg_f": 78.2,
+    "precipitation": 0.03,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-06-05",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.6,
+    "temp_min_f": 73.7,
+    "temp_avg_f": 77.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-06",
+    "weather_condition": "Clear",
+    "temp_max_f": 86.2,
+    "temp_min_f": 68.5,
+    "temp_avg_f": 76.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-07",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.1,
+    "temp_min_f": 72.2,
+    "temp_avg_f": 78.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-08",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.9,
+    "temp_min_f": 70.4,
+    "temp_avg_f": 76.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-09",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.2,
+    "temp_min_f": 75.7,
+    "temp_avg_f": 78.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-10",
+    "weather_condition": "Clear",
+    "temp_max_f": 84.8,
+    "temp_min_f": 69.3,
+    "temp_avg_f": 77.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-11",
+    "weather_condition": "Clear",
+    "temp_max_f": 77.4,
+    "temp_min_f": 71.8,
+    "temp_avg_f": 75.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-12",
+    "weather_condition": "Clear",
+    "temp_max_f": 89.2,
+    "temp_min_f": 77.7,
+    "temp_avg_f": 81.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-13",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.8,
+    "temp_min_f": 73.8,
+    "temp_avg_f": 78.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-14",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.9,
+    "temp_min_f": 72.1,
+    "temp_avg_f": 78.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-15",
+    "weather_condition": "Clear",
+    "temp_max_f": 71.1,
+    "temp_min_f": 62.8,
+    "temp_avg_f": 68.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-16",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.4,
+    "temp_min_f": 69.1,
+    "temp_avg_f": 73.1,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-17",
+    "weather_condition": "Partially cloudy",
+    "temp_max_f": 79.9,
+    "temp_min_f": 73.6,
+    "temp_avg_f": 78.0,
+    "precipitation": 0.02,
+    "weather_description": "Partly cloudy throughout the day."
+  },
+  {
+    "weather_date": "2021-06-18",
+    "weather_condition": "Clear",
+    "temp_max_f": 76.2,
+    "temp_min_f": 66.2,
+    "temp_avg_f": 70.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-19",
+    "weather_condition": "Clear",
+    "temp_max_f": 88.7,
+    "temp_min_f": 74.0,
+    "temp_avg_f": 80.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-20",
+    "weather_condition": "Clear",
+    "temp_max_f": 87.0,
+    "temp_min_f": 72.1,
+    "temp_avg_f": 79.5,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-21",
+    "weather_condition": "Clear",
+    "temp_max_f": 83.8,
+    "temp_min_f": 71.3,
+    "temp_avg_f": 76.7,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-22",
+    "weather_condition": "Clear",
+    "temp_max_f": 79.9,
+    "temp_min_f": 70.9,
+    "temp_avg_f": 76.0,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-23",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.4,
+    "temp_min_f": 70.1,
+    "temp_avg_f": 74.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-24",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.3,
+    "temp_min_f": 70.0,
+    "temp_avg_f": 75.2,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-25",
+    "weather_condition": "Clear",
+    "temp_max_f": 85.4,
+    "temp_min_f": 77.6,
+    "temp_avg_f": 78.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-26",
+    "weather_condition": "Clear",
+    "temp_max_f": 80.2,
+    "temp_min_f": 71.3,
+    "temp_avg_f": 74.4,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-27",
+    "weather_condition": "Clear",
+    "temp_max_f": 82.7,
+    "temp_min_f": 70.1,
+    "temp_avg_f": 78.9,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-28",
+    "weather_condition": "Clear",
+    "temp_max_f": 81.8,
+    "temp_min_f": 73.7,
+    "temp_avg_f": 78.6,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  },
+  {
+    "weather_date": "2021-06-29",
+    "weather_condition": "Rain, Partially cloudy",
+    "temp_max_f": 88.4,
+    "temp_min_f": 75.9,
+    "temp_avg_f": 83.0,
+    "precipitation": 0.27,
+    "weather_description": "Partly cloudy throughout the day with rain."
+  },
+  {
+    "weather_date": "2021-06-30",
+    "weather_condition": "Clear",
+    "temp_max_f": 87.7,
+    "temp_min_f": 74.0,
+    "temp_avg_f": 80.3,
+    "precipitation": 0.0,
+    "weather_description": "Clear conditions throughout the day."
+  }
+]

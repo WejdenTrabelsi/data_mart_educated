@@ -117,3 +117,200 @@ def build_fact(enriched_df, dims):
 
     logger.info(f"Final fact rows: {len(fact)}")
     return fact
+
+
+# ===================================================================
+# Student Attendance Fact (absence-only model)
+# ===================================================================
+def _classify_attendance(nb_records: int, avg_late_sec: float) -> str:
+    if nb_records == 0:
+        return "Absent"
+    if avg_late_sec <= 300:
+        return "On time"
+    elif avg_late_sec <= 900:
+        return "Late"
+    else:
+        return "Very Late"
+
+def build_attendance_fact(df_journal: pd.DataFrame,
+                          dim_student: pd.DataFrame,
+                          dim_day: pd.DataFrame,
+                          dim_weather: pd.DataFrame) -> pd.DataFrame:
+
+    logger.info("Building absence-only attendance fact...")
+
+    # =========================================================
+    # 1. Normalize dates
+    # =========================================================
+    df = df_journal.copy()
+    df["session_date"] = pd.to_datetime(df["session_start"], errors="coerce").dt.normalize()
+
+    dim_day = dim_day.copy()
+    dim_day["day_natural_key"] = pd.to_datetime(dim_day["day_natural_key"], errors="coerce").dt.normalize()
+
+    # =========================================================
+    # 2. Journal coverage
+    # =========================================================
+    journal_min = df["session_date"].min()
+    journal_max = df["session_date"].max()
+    logger.info(f"Journal coverage: {journal_min.date()} → {journal_max.date()}")
+
+    # =========================================================
+    # 3. Student filtering
+    # =========================================================
+    journal_students = set(df["student_natural_key"].unique())
+    dim_students_keys = set(dim_student["student_natural_key"].unique())
+
+    matched = journal_students & dim_students_keys
+    unmatched = journal_students - dim_students_keys
+
+    logger.info(f"Journal unique students: {len(journal_students)}")
+    logger.info(f"Dim_student unique keys: {len(dim_students_keys)}")
+    logger.info(f"Matched: {len(matched)}")
+    logger.info(f"Unmatched (in journal but NOT in dim_student): {len(unmatched)}")
+
+    if unmatched:
+        logger.warning(f"Sample unmatched keys: {list(unmatched)[:5]}")
+
+    # Keep only students that exist in both
+    dim_student_filtered = dim_student[
+        dim_student["student_natural_key"].isin(matched)
+    ].copy()
+
+    logger.info(f"Students kept for fact: {len(dim_student_filtered)}")
+
+    # =========================================================
+    # 4. School days within journal range
+    # =========================================================
+    school_days = dim_day[
+        (dim_day["is_school_day"] == 1) &
+        (dim_day["day_natural_key"] >= journal_min) &
+        (dim_day["day_natural_key"] <= journal_max)
+    ][["day_sk", "day_natural_key"]].copy()
+
+    logger.info(f"School days in journal range: {len(school_days)}")
+
+    school_day_dates = set(school_days["day_natural_key"])
+    df_school = df[df["session_date"].isin(school_day_dates)]
+
+    if len(df_school) == 0:
+        logger.error("ZERO journal records fall within school days!")
+        raise ValueError("No journal records on school days.")
+
+    # =========================================================
+    # 5. Aggregate actual attendance
+    # =========================================================
+    actual = df_school.groupby(["student_natural_key", "session_date"]).agg(
+        nb_records=("late_seconds", "count"),
+        avg_late_sec=("late_seconds", "mean")
+    ).reset_index()
+
+    actual["session_date"] = pd.to_datetime(actual["session_date"]).dt.normalize()
+
+    logger.info(f"Actual aggregated records: {len(actual)}")
+
+    # =========================================================
+    # 6. Expected grid (students × days)
+    # =========================================================
+    expected = school_days.merge(
+        dim_student_filtered[["student_sk", "student_natural_key"]],
+        how="cross"
+    )
+
+    expected["day_natural_key"] = pd.to_datetime(expected["day_natural_key"]).dt.normalize()
+
+    logger.info(f"Expected grid size: {len(school_days)} days × {len(dim_student_filtered)} students = {len(expected)}")
+
+    # =========================================================
+    # 7. Merge (expected LEFT JOIN actual)
+    # =========================================================
+    fact = expected.merge(
+        actual,
+        left_on=["student_natural_key", "day_natural_key"],
+        right_on=["student_natural_key", "session_date"],
+        how="left"
+    )
+
+    logger.info(f"After left join rows: {len(fact)}")
+
+    # =========================================================
+    # 8. Fill + classify
+    # =========================================================
+    fact["nb_records"] = fact["nb_records"].fillna(0).astype(int)
+    fact["avg_late_sec"] = fact["avg_late_sec"].fillna(0.0)
+
+    logger.info(f"Rows with nb_records > 0 (present): {(fact['nb_records'] > 0).sum()}")
+    logger.info(f"Rows with nb_records == 0 (absent): {(fact['nb_records'] == 0).sum()}")
+
+    fact["attendance_status"] = fact.apply(
+        lambda r: _classify_attendance(r["nb_records"], r["avg_late_sec"]),
+        axis=1
+    )
+
+    fact["absence_flag"] = (fact["attendance_status"] == "Absent").astype(int)
+    fact["late_flag"] = (fact["attendance_status"] == "Late").astype(int)
+    fact["very_late_flag"] = (fact["attendance_status"] == "Very Late").astype(int)
+    fact["avg_late_minutes"] = (fact["avg_late_sec"] / 60).round(2)
+
+    logger.info(f"Attendance distribution:\n{fact['attendance_status'].value_counts().to_string()}")
+
+    # =========================================================
+    # 9. Keep only absences
+    # =========================================================
+    before = len(fact)
+    fact = fact[fact["absence_flag"] == 1].copy()
+    logger.info(f"Absence-only filter: {len(fact)}/{before} rows kept")
+
+    if fact.empty:
+        logger.warning("No absences found!")
+        return pd.DataFrame(columns=[
+            "day_sk", "weather_sk", "student_sk", "attendance_status",
+            "nb_records", "avg_late_sec", "avg_late_minutes",
+            "absence_flag", "late_flag", "very_late_flag",
+            "rain_flag", "temp_band", "nb_absence"
+        ])
+
+    # =========================================================
+    # 10. Weather join
+    # =========================================================
+    weather_map = dim_weather[[
+        "weather_date", "weather_sk", "rain_flag", "temp_band"
+    ]].copy()
+
+    fact["day_natural_key"] = pd.to_datetime(fact["day_natural_key"]).dt.normalize()
+    weather_map["weather_date"] = pd.to_datetime(weather_map["weather_date"]).dt.normalize()
+
+    fact = fact.merge(
+        weather_map,
+        left_on="day_natural_key",
+        right_on="weather_date",
+        how="left"
+    )
+
+    fallback = dim_weather[dim_weather["weather_condition"] == "Inconnu"]
+    fallback_sk = int(fallback.iloc[0]["weather_sk"]) if not fallback.empty else 1
+
+    fact["weather_sk"] = fact["weather_sk"].fillna(fallback_sk).astype(int)
+    fact["rain_flag"] = fact["rain_flag"].fillna(0).astype(int)
+    fact["temp_band"] = fact["temp_band"].fillna("Unknown")
+
+    # =========================================================
+    # 11. Final clean
+    # =========================================================
+    fact["avg_late_sec"] = fact["avg_late_sec"].fillna(0.0)
+    fact["avg_late_minutes"] = fact["avg_late_minutes"].fillna(0.0)
+    fact["late_flag"] = fact["late_flag"].fillna(0).astype(int)
+    fact["very_late_flag"] = fact["very_late_flag"].fillna(0).astype(int)
+    fact["nb_absence"] = 1
+
+    fact = fact[[
+        "day_sk", "weather_sk", "student_sk",
+        "attendance_status", "nb_records",
+        "avg_late_sec", "avg_late_minutes",
+        "absence_flag", "late_flag", "very_late_flag",
+        "rain_flag", "temp_band", "nb_absence"
+    ]].copy()
+
+    logger.info(f"Final absence fact: {len(fact)} rows")
+
+    return fact
