@@ -372,11 +372,11 @@ def build_dim_day(dim_week: pd.DataFrame, dim_period: pd.DataFrame) -> pd.DataFr
     while first_monday.weekday() != 0:
         first_monday -= timedelta(days=1)
 
+    # Ensure all timestamps — this was the silent failure point
     period_list = [
         (int(r["period_sk"]), pd.Timestamp(r["start_date"]), pd.Timestamp(r["end_date"]))
         for _, r in dim_period.iterrows()
     ]
-    default_period_sk = int(dim_period.iloc[-1]["period_sk"])
 
     days = []
     day_sk = 1
@@ -385,15 +385,17 @@ def build_dim_day(dim_week: pd.DataFrame, dim_period: pd.DataFrame) -> pd.DataFr
     while d.date() <= SCHOOL_END:
         is_sunday = d.weekday() == 6
         is_holiday = d in holidays
-
-        # School day = not a Sunday AND not a public/vacation holiday
         is_school = not is_sunday and not is_holiday
 
-        period_sk = default_period_sk
+        # No silent fallback — fail loudly if a date has no period
+        period_sk = None
         for p_sk, p_start, p_end in period_list:
             if p_start <= d <= p_end:
                 period_sk = p_sk
                 break
+
+        if period_sk is None:
+            raise ValueError(f"No period found for date {d.date()} — check PERIODS_DEF coverage")
 
         days_since_start = (d - pd.Timestamp(first_monday)).days
         week_num = days_since_start // 7 + 1
@@ -419,8 +421,13 @@ def build_dim_day(dim_week: pd.DataFrame, dim_period: pd.DataFrame) -> pd.DataFr
     df["week_sk"] = df["week_sk"].astype(int)
     df["is_school_day"] = df["is_school_day"].astype(int)
     df["is_holiday"] = df["is_holiday"].astype(int)
-    return df
 
+    # Quick sanity check
+    period_dist = df["period_sk"].value_counts()
+    logger.info(f"DimDay period distribution:\n{period_dist.to_string()}")
+    assert len(period_dist) > 1, "DimDay collapsed to a single period — check PERIODS_DEF!"
+
+    return df
 def build_all_attendance_dimensions(df_zones, df_students, raw_weather, dim_year, dim_semester):
     dim_zone = build_dim_zone(df_zones)
     dim_student = build_dim_student(df_students, dim_zone,df_zones)

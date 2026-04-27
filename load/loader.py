@@ -205,9 +205,11 @@ def ensure_attendance_schema():
             if stmt:
                 conn.execute(text(stmt))
     logger.success("Attendance schema verified/created.")
-
 def load_attendance_dimensions(dims: dict):
     engine = get_warehouse_engine()
+
+    # DimDay must always be fully reloaded — period_sk depends on computed ranges
+    FORCE_RELOAD_TABLES = {'dim_day'}
 
     mapping = {
         'dim_zone': ('DimZone', ['zone_natural_key']),
@@ -219,7 +221,6 @@ def load_attendance_dimensions(dims: dict):
         'dim_day': ('DimDay', ['day_natural_key']),
     }
 
-    # Columns that are dates and need type normalization before dedup merge
     DATE_COLS = {
         'dim_weather': 'weather_date',
         'dim_day': 'day_natural_key',
@@ -229,13 +230,22 @@ def load_attendance_dimensions(dims: dict):
         df_new = dims[key].copy()
         logger.info(f"Processing {table_name} ({len(df_new)} rows)")
 
+        # Force full reload for DimDay
+        if key in FORCE_RELOAD_TABLES:
+            logger.info(f"Force-reloading {table_name} (truncate + insert)")
+            with engine.begin() as conn:
+                conn.execute(text(f"TRUNCATE TABLE {table_name}"))
+            df_new.to_sql(table_name, engine, if_exists='append', index=False)
+            logger.success(f"Reloaded {len(df_new)} rows into {table_name}")
+            continue
+
+        # ... rest of your existing dedup logic unchanged
         try:
             df_existing = pd.read_sql(f"SELECT * FROM {table_name}", engine)
         except Exception:
             df_existing = pd.DataFrame()
 
         if not df_existing.empty and not df_new.empty:
-            # Normalize date columns so merge doesn't fail on type mismatch
             if key in DATE_COLS:
                 col = DATE_COLS[key]
                 if col in df_existing.columns:
@@ -243,16 +253,13 @@ def load_attendance_dimensions(dims: dict):
                 if col in df_new.columns:
                     df_new[col] = pd.to_datetime(df_new[col], errors="coerce").dt.normalize()
 
-            # For DimWeather deduplicate by SK to avoid NULL date issues
             if key == 'dim_weather':
                 existing_sks = set(df_existing['weather_sk'].tolist())
                 df_new = df_new[~df_new['weather_sk'].isin(existing_sks)]
             else:
                 df_new = df_new.merge(
                     df_existing[unique_cols].drop_duplicates(),
-                    on=unique_cols,
-                    how='left',
-                    indicator=True
+                    on=unique_cols, how='left', indicator=True
                 ).query("_merge == 'left_only'").drop(columns=['_merge'])
 
         if df_new.empty:
