@@ -97,8 +97,6 @@ SCHOOL_START = date(2020, 9, 15)
 SCHOOL_END   = date(2021, 6, 30)
 
 HOLIDAY_PERIODS = [
-    # Fixed national holidays
-    (date(2020, 9, 15),  date(2020, 9, 15),  "Début année scolaire"),   # not a holiday, just boundary
     (date(2020, 10, 15), date(2020, 10, 15), "Fête de l'Évacuation"),
     (date(2020, 10, 28), date(2020, 10, 28), "Al Mawlid (Anniversaire du Prophète)"),
     (date(2020, 12, 21), date(2021, 1, 3),   "Vacances hiver / Nouvel An"),
@@ -109,22 +107,8 @@ HOLIDAY_PERIODS = [
     (date(2021, 3, 20),  date(2021, 3, 20),  "Fête de l'Indépendance"),
     (date(2021, 4, 9),   date(2021, 4, 9),   "Journée des Martyrs"),
     (date(2021, 5, 1),   date(2021, 5, 1),   "Fête du Travail"),
-    (date(2021, 5, 13),  date(2021, 5, 14),  "Aïd el-Fitr"),            # approximate
+    (date(2021, 5, 13),  date(2021, 5, 14),  "Aïd el-Fitr"),
     (date(2021, 6, 25),  date(2021, 6, 30),  "Fin année / Aïd el-Kébir approx"),
-]
-
-PERIODS_DEF = [
-    ("Rentrée scolaire",                  "normale",         date(2020, 9, 15),  date(2020, 9, 30)),
-    ("Avant vacances mi-trimestre 1",     "avant_vacances",  date(2020, 10, 1),  date(2020, 10, 25)),
-    ("Vacances mi-trimestre 1",           "vacances",        date(2020, 10, 26), date(2020, 11, 1)),
-    ("Après mi-trimestre 1",              "normale",         date(2020, 11, 2),  date(2020, 12, 20)),
-    ("Vacances hiver",                    "vacances",        date(2020, 12, 21), date(2021, 1, 3)),
-    ("Avant vacances mi-trimestre 2",     "avant_vacances",  date(2021, 1, 4),   date(2021, 1, 31)),
-    ("Vacances mi-trimestre 2",           "vacances",        date(2021, 2, 1),   date(2021, 2, 7)),
-    ("Après mi-trimestre 2",              "normale",         date(2021, 2, 8),   date(2021, 3, 14)),
-    ("Vacances printemps",                "vacances",        date(2021, 3, 15),  date(2021, 3, 28)),
-    ("Avant examens finaux",              "examen",          date(2021, 3, 29),  date(2021, 5, 31)),
-    ("Examens et fin d'année",            "examen",          date(2021, 6, 1),   date(2021, 6, 30)),
 ]
 
 DAY_NAMES_FR = {
@@ -149,9 +133,6 @@ def _month_to_semester_code(month: int) -> str:
 
 
 def _build_holiday_set() -> dict:
-    """Returns a dict of Timestamp → holiday_name for all non-school days.
-    Sundays are excluded from school days via is_school_day logic, NOT stored as holidays.
-    """
     holidays = {}
     for s, e, name in HOLIDAY_PERIODS:
         cd = pd.Timestamp(s)
@@ -161,12 +142,12 @@ def _build_holiday_set() -> dict:
             cd += timedelta(days=1)
     return holidays
 
+
 def build_dim_zone(df_zones: pd.DataFrame) -> pd.DataFrame:
     df = df_zones.copy()
     df = df.dropna(subset=["zone_natural_key"])
     df = df[df["zone_natural_key"].astype(str).str.strip() != ""]
 
-    # Normalize description casing
     df["zone_description"] = (
         df["zone_description"]
         .fillna("No description")
@@ -176,7 +157,6 @@ def build_dim_zone(df_zones: pd.DataFrame) -> pd.DataFrame:
     )
     df.loc[df["zone_description"] == "", "zone_description"] = "No description"
 
-    # Get unique zone NAMES (not UUIDs) — this is the real dimension
     unique_zones = (
         df[["zone_description"]]
         .drop_duplicates()
@@ -185,14 +165,12 @@ def build_dim_zone(df_zones: pd.DataFrame) -> pd.DataFrame:
     )
     unique_zones["zone_sk"] = range(2, len(unique_zones) + 2)
 
-    # UNKNOWN row
     unknown = pd.DataFrame([{
         "zone_sk": 1,
         "zone_description": "Unknown Zone"
     }])
     unique_zones = pd.concat([unknown, unique_zones], ignore_index=True)
 
-    # Keep a representative UUID per zone name (for zone_natural_key column)
     uuid_repr = (
         df.sort_values("zone_natural_key")
           .drop_duplicates(subset=["zone_description"])[["zone_description", "zone_natural_key"]]
@@ -201,10 +179,11 @@ def build_dim_zone(df_zones: pd.DataFrame) -> pd.DataFrame:
     unique_zones.loc[unique_zones["zone_description"] == "Unknown Zone", "zone_natural_key"] = "UNKNOWN"
 
     return unique_zones[["zone_sk", "zone_natural_key", "zone_description"]]
+
+
 def build_dim_student(df_students: pd.DataFrame, dim_zone: pd.DataFrame, df_zones_raw: pd.DataFrame) -> pd.DataFrame:
     df = df_students.copy()
 
-    # Build full UUID → normalized description map from ALL raw zone rows
     raw = df_zones_raw.copy()
     raw = raw.dropna(subset=["zone_natural_key"])
     raw["zone_natural_key"] = raw["zone_natural_key"].astype(str).str.strip()
@@ -217,16 +196,13 @@ def build_dim_student(df_students: pd.DataFrame, dim_zone: pd.DataFrame, df_zone
     )
     uuid_to_desc = dict(zip(raw["zone_natural_key"], raw["zone_description"]))
 
-    # description → zone_sk from the deduplicated dim_zone
     desc_to_sk = dict(zip(dim_zone["zone_description"], dim_zone["zone_sk"]))
     unknown_sk = int(dim_zone.loc[dim_zone["zone_description"] == "Unknown Zone", "zone_sk"].iloc[0])
 
-    # Resolve each student's UUID → description → SK
     df["zone_natural_key"] = df["zone_natural_key"].fillna("").astype(str).str.strip()
     df["zone_description"] = df["zone_natural_key"].map(uuid_to_desc).fillna("Unknown Zone").str.title()
     df["zone_sk"] = df["zone_description"].map(desc_to_sk).fillna(unknown_sk).astype(int)
 
-    # Clean name
     df["full_name_arab"] = df["full_name_arab"].fillna("Unknown").astype(str).str.strip()
     df.loc[df["full_name_arab"] == "", "full_name_arab"] = "Unknown"
 
@@ -236,14 +212,14 @@ def build_dim_student(df_students: pd.DataFrame, dim_zone: pd.DataFrame, df_zone
     assert df["zone_sk"].isna().sum() == 0, "zone_sk still has NULLs!"
 
     return df[["student_sk", "student_natural_key", "zone_sk", "student_full_name_arab"]]
+
+
 def build_dim_weather(raw_weather: pd.DataFrame) -> pd.DataFrame:
     if raw_weather.empty:
         return pd.DataFrame({
             "weather_sk": [1],
             "weather_date": [pd.NaT],
             "weather_condition": ["Inconnu"],
-            "temp_max_c": [0.0],
-            "temp_min_c": [0.0],
             "temp_avg_c": [0.0],
             "precipitation": [0.0],
             "rain_flag": [0],
@@ -253,11 +229,9 @@ def build_dim_weather(raw_weather: pd.DataFrame) -> pd.DataFrame:
 
     df = raw_weather.copy()
 
-    # Date
     df["weather_date"] = pd.to_datetime(df["weather_date"], errors="coerce").dt.normalize()
 
-    # Convert comma decimals safely
-    for col in ["temp_max_f", "temp_min_f", "temp_avg_f", "precipitation"]:
+    for col in ["temp_avg_f", "precipitation"]:
         if col in df.columns:
             df[col] = (
                 df[col].astype(str)
@@ -265,22 +239,13 @@ def build_dim_weather(raw_weather: pd.DataFrame) -> pd.DataFrame:
             )
             df[col] = pd.to_numeric(df[col], errors="coerce")
 
-    # Convert to Celsius
-    df["temp_max_c"] = ((df["temp_max_f"] - 32) * 5 / 9).round(2)
-    df["temp_min_c"] = ((df["temp_min_f"] - 32) * 5 / 9).round(2)
     df["temp_avg_c"] = ((df["temp_avg_f"] - 32) * 5 / 9).round(2)
-
     df["precipitation"] = df["precipitation"].fillna(0.0)
-
     df["rain_flag"] = (df["precipitation"] > 0).astype(int)
-
-    # Band
     df["temp_band"] = df["temp_avg_c"].apply(
         lambda t: "Cold" if t < 10 else "Hot" if t > 27 else "Mild"
     )
-
     df["weather_condition"] = df["weather_condition"].fillna("Unknown").astype(str)
-
     df["weather_description"] = df["weather_description"].fillna("").astype(str)
 
     df = df.drop_duplicates(subset=["weather_date"]).reset_index(drop=True)
@@ -290,20 +255,12 @@ def build_dim_weather(raw_weather: pd.DataFrame) -> pd.DataFrame:
         "weather_sk",
         "weather_date",
         "weather_condition",
-        "temp_max_c",
-        "temp_min_c",
         "temp_avg_c",
         "precipitation",
         "rain_flag",
         "temp_band",
         "weather_description"
     ]]
-def build_dim_period() -> pd.DataFrame:
-    df = pd.DataFrame(PERIODS_DEF, columns=["period_name", "period_type", "start_date", "end_date"])
-    df["start_date"] = pd.to_datetime(df["start_date"])
-    df["end_date"] = pd.to_datetime(df["end_date"])
-    df["period_sk"] = range(1, len(df) + 1)
-    return df[["period_sk", "period_name", "period_type", "start_date", "end_date"]]
 
 
 def build_dim_month(dim_semester: pd.DataFrame) -> pd.DataFrame:
@@ -364,19 +321,14 @@ def build_dim_week(dim_month: pd.DataFrame) -> pd.DataFrame:
 
     return pd.DataFrame(weeks)
 
-def build_dim_day(dim_week: pd.DataFrame, dim_period: pd.DataFrame) -> pd.DataFrame:
+
+def build_dim_day(dim_week: pd.DataFrame) -> pd.DataFrame:
     holidays = _build_holiday_set()
     week_map = {int(r["week_number"]): int(r["week_sk"]) for _, r in dim_week.iterrows()}
 
     first_monday = SCHOOL_START
     while first_monday.weekday() != 0:
         first_monday -= timedelta(days=1)
-
-    # Ensure all timestamps — this was the silent failure point
-    period_list = [
-        (int(r["period_sk"]), pd.Timestamp(r["start_date"]), pd.Timestamp(r["end_date"]))
-        for _, r in dim_period.iterrows()
-    ]
 
     days = []
     day_sk = 1
@@ -386,16 +338,6 @@ def build_dim_day(dim_week: pd.DataFrame, dim_period: pd.DataFrame) -> pd.DataFr
         is_sunday = d.weekday() == 6
         is_holiday = d in holidays
         is_school = not is_sunday and not is_holiday
-
-        # No silent fallback — fail loudly if a date has no period
-        period_sk = None
-        for p_sk, p_start, p_end in period_list:
-            if p_start <= d <= p_end:
-                period_sk = p_sk
-                break
-
-        if period_sk is None:
-            raise ValueError(f"No period found for date {d.date()} — check PERIODS_DEF coverage")
 
         days_since_start = (d - pd.Timestamp(first_monday)).days
         week_num = days_since_start // 7 + 1
@@ -407,7 +349,6 @@ def build_dim_day(dim_week: pd.DataFrame, dim_period: pd.DataFrame) -> pd.DataFr
             "day_name": DAY_NAMES_FR[d.weekday()],
             "day_number": d.weekday() + 1,
             "week_sk": week_sk,
-            "period_sk": period_sk,
             "is_school_day": 1 if is_school else 0,
             "is_holiday": 1 if (is_holiday or is_sunday) else 0,
             "holiday_name": holidays.get(d, "Dimanche" if is_sunday else "")
@@ -417,35 +358,29 @@ def build_dim_day(dim_week: pd.DataFrame, dim_period: pd.DataFrame) -> pd.DataFr
         d += timedelta(days=1)
 
     df = pd.DataFrame(days)
-    df["period_sk"] = df["period_sk"].astype(int)
     df["week_sk"] = df["week_sk"].astype(int)
     df["is_school_day"] = df["is_school_day"].astype(int)
     df["is_holiday"] = df["is_holiday"].astype(int)
 
-    # Quick sanity check
-    period_dist = df["period_sk"].value_counts()
-    logger.info(f"DimDay period distribution:\n{period_dist.to_string()}")
-    assert len(period_dist) > 1, "DimDay collapsed to a single period — check PERIODS_DEF!"
-
     return df
+
+
 def build_all_attendance_dimensions(df_zones, df_students, raw_weather, dim_year, dim_semester):
     dim_zone = build_dim_zone(df_zones)
-    dim_student = build_dim_student(df_students, dim_zone,df_zones)
+    dim_student = build_dim_student(df_students, dim_zone, df_zones)
     dim_weather = build_dim_weather(raw_weather)
-    dim_period = build_dim_period()
     dim_month = build_dim_month(dim_semester)
     dim_week = build_dim_week(dim_month)
-    dim_day = build_dim_day(dim_week, dim_period)
+    dim_day = build_dim_day(dim_week)
 
     logger.info(f"Attendance dims built: Zone={len(dim_zone)}, Student={len(dim_student)}, "
-                f"Weather={len(dim_weather)}, Period={len(dim_period)}, Month={len(dim_month)}, "
+                f"Weather={len(dim_weather)}, Month={len(dim_month)}, "
                 f"Week={len(dim_week)}, Day={len(dim_day)}")
 
     return {
         'dim_zone': dim_zone,
         'dim_student': dim_student,
         'dim_weather': dim_weather,
-        'dim_period': dim_period,
         'dim_month': dim_month,
         'dim_week': dim_week,
         'dim_day': dim_day,

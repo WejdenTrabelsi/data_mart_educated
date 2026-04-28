@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { LogIn } from 'lucide-react';
 
@@ -24,7 +24,6 @@ export default function Login() {
       });
 
       localStorage.setItem('token', res.data.access_token);
-      localStorage.setItem('user_role', res.data.user_role);
       localStorage.setItem('full_name', res.data.full_name);
 
       navigate('/dashboard');
@@ -52,7 +51,7 @@ export default function Login() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-primary"
-              placeholder="director ou parent1"
+              placeholder="admin"
               required
             />
           </div>
@@ -64,7 +63,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-primary"
-              placeholder="director123"
+              placeholder="••••••••"
               required
             />
           </div>
@@ -79,14 +78,6 @@ export default function Login() {
             {loading ? 'Connexion...' : 'Se connecter'}
           </button>
         </form>
-
-        {/* LINK TO REGISTER */}
-        <p className="text-center mt-8 text-sm text-gray-500">
-          Pas encore de compte ?{' '}
-          <Link to="/register" className="text-primary font-semibold hover:underline">
-            Créer un compte parent
-          </Link>
-        </p>
       </div>
     </div>
   );

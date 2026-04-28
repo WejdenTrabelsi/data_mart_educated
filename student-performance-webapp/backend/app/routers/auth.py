@@ -3,7 +3,6 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.sql import func
 from sqlalchemy.orm import Session
 from jose import jwt, JWTError
-from sqlalchemy.sql import func          # ← ADD THIS LINE
 from ..database import get_db
 from ..models.user import User
 from ..schemas.auth import Token, TokenData
@@ -41,13 +40,6 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = 
     if not user or not verify_password(form_data.password, user.password_hash):
         raise HTTPException(status_code=401, detail="Identifiants incorrects")
     
-    if user.status != "approved":
-        raise HTTPException(
-            status_code=403,
-            detail="Votre compte est en attente d'approbation par le directeur."
-        )
-    
-    # Update last login
     user.last_login = func.now()
     db.commit()
     
@@ -55,6 +47,5 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = 
     return {
         "access_token": access_token,
         "token_type": "bearer",
-        "user_role": user.role,
         "full_name": user.full_name
     }

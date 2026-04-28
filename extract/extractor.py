@@ -18,16 +18,16 @@ def extract_all():
         engine
     )
     
-    logger.info("Sample content names (should show Arabic, not ???):")
     logger.info(f"Extracted: {len(df_grid)} grids, {len(df_gridline)} grades, "
                 f"{len(df_studyplan)} study plans, {len(df_content)} contents")
     
     return df_grid, df_gridline, df_studyplan, df_schoolyear, df_schoolyearperiod, df_content
+
+
 def extract_attendance():
     engine = get_source_engine()
     logger.info("Extracting attendance data from source...")
 
-    # Validate what years we actually have
     date_range = pd.read_sql("""
         SELECT 
             MIN(CAST([Start] AS DATE)) as min_date, 
@@ -44,16 +44,11 @@ def extract_attendance():
         SELECT 
             CAST(Oid AS NVARCHAR(50)) AS journal_natural_key,
             CAST(Student AS NVARCHAR(50)) AS student_natural_key,
-            [Start] AS session_start,
-            CAST(Late AS INT) AS late_seconds,
-            CAST(Checks AS INT) AS checks
+            [Start] AS session_start
         FROM [educated-bd-2].[dbo].[StudentAttendanceJournal]
         WHERE Student IS NOT NULL
           AND [Start] IS NOT NULL
     """, engine)
-
-    # CRITICAL: Late=NULL means on-time (present). Do NOT drop them!
-    df_journal["late_seconds"] = pd.to_numeric(df_journal["late_seconds"], errors="coerce").fillna(0)
 
     df_students = pd.read_sql("""
         SELECT 

@@ -19,14 +19,12 @@ def load_dimensions(dims: dict):
         df_new = dims[key].copy()
         logger.info(f"Processing {table_name} ({len(df_new)} rows)")
 
-        # Load existing table
         try:
             df_existing = pd.read_sql(f"SELECT * FROM {table_name}", engine)
         except:
             df_existing = pd.DataFrame()
 
         if not df_existing.empty:
-            # Remove already existing rows
             if isinstance(unique_cols, list):
                 df_new = df_new.merge(
                     df_existing[unique_cols],
@@ -41,7 +39,6 @@ def load_dimensions(dims: dict):
             logger.info(f"No new data for {table_name}")
             continue
 
-        # Special dtype for Arabic
         dtype = None
         if key == 'dim_content':
             dtype = {'content_name': NVARCHAR(500)}
@@ -70,7 +67,6 @@ def load_fact(fact_df: pd.DataFrame):
     except:
         df_existing = pd.DataFrame()
 
-    # Define uniqueness of fact rows
     unique_cols = ['content_sk', 'level_sk', 'branch_sk', 'semester_sk']
 
     if not df_existing.empty:
@@ -96,7 +92,7 @@ def load_fact(fact_df: pd.DataFrame):
 
 
 # ===================================================================
-# NEW — Attendance Schema + Loader
+# Attendance Schema + Loader
 # ===================================================================
 _ATTENDANCE_SCHEMA_SQL = """
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='DimZone' AND xtype='U')
@@ -119,22 +115,11 @@ CREATE TABLE DimWeather (
     weather_sk INT PRIMARY KEY,
     weather_date DATE NULL UNIQUE,
     weather_condition NVARCHAR(100) NOT NULL DEFAULT 'Unknown',
-    temp_max_f FLOAT NOT NULL DEFAULT 0,
-    temp_min_f FLOAT NOT NULL DEFAULT 0,
-    temp_avg_f FLOAT NOT NULL DEFAULT 0,
+    temp_avg_c FLOAT NOT NULL DEFAULT 0,
     precipitation FLOAT NOT NULL DEFAULT 0,
     rain_flag INT NOT NULL DEFAULT 0,
     temp_band NVARCHAR(20) NOT NULL DEFAULT 'Unknown',
     weather_description NVARCHAR(500) NOT NULL DEFAULT ''
-);
-
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='DimPeriod' AND xtype='U')
-CREATE TABLE DimPeriod (
-    period_sk INT PRIMARY KEY,
-    period_name NVARCHAR(100) NOT NULL,
-    period_type NVARCHAR(50) NOT NULL,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL
 );
 
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='DimMonth' AND xtype='U')
@@ -160,15 +145,11 @@ CREATE TABLE DimDay (
     day_name NVARCHAR(20) NOT NULL,
     day_number INT NOT NULL,
     week_sk INT NOT NULL,
-    period_sk INT NOT NULL DEFAULT 0,
     is_school_day BIT NOT NULL DEFAULT 0,
     is_holiday BIT NOT NULL DEFAULT 0,
     holiday_name NVARCHAR(100) NOT NULL DEFAULT ''
 );
 
--- ============================================================
--- FACT: Composite PK exactly like your performance fact
--- ============================================================
 IF EXISTS (SELECT * FROM sysobjects WHERE name='FactStudentPresence' AND xtype='U')
     DROP TABLE FactStudentPresence;
 
@@ -176,22 +157,12 @@ CREATE TABLE FactStudentPresence (
     day_sk INT NOT NULL,
     weather_sk INT NOT NULL,
     student_sk INT NOT NULL,
-    attendance_status NVARCHAR(20) NOT NULL DEFAULT 'Absent',
-    nb_records INT NOT NULL DEFAULT 0,
-    avg_late_sec FLOAT NOT NULL DEFAULT 0,
-    avg_late_minutes FLOAT NOT NULL DEFAULT 0,
-    absence_flag INT NOT NULL DEFAULT 1,
-    late_flag INT NOT NULL DEFAULT 0,
-    very_late_flag INT NOT NULL DEFAULT 0,
-    rain_flag INT NOT NULL DEFAULT 0,
-    temp_band NVARCHAR(20) NOT NULL DEFAULT 'Unknown',
     nb_absence INT NOT NULL DEFAULT 1,
     CONSTRAINT PK_FactStudentPresence PRIMARY KEY (day_sk, student_sk, weather_sk)
 );
 
 CREATE INDEX IX_Fact_Attendance_Day ON FactStudentPresence(day_sk);
 CREATE INDEX IX_Fact_Attendance_Student ON FactStudentPresence(student_sk);
-CREATE INDEX IX_Fact_Attendance_Status ON FactStudentPresence(attendance_status);
 """
 
 
@@ -205,17 +176,17 @@ def ensure_attendance_schema():
             if stmt:
                 conn.execute(text(stmt))
     logger.success("Attendance schema verified/created.")
+
+
 def load_attendance_dimensions(dims: dict):
     engine = get_warehouse_engine()
 
-    # DimDay must always be fully reloaded — period_sk depends on computed ranges
     FORCE_RELOAD_TABLES = {'dim_day'}
 
     mapping = {
         'dim_zone': ('DimZone', ['zone_natural_key']),
         'dim_student': ('DimStudent', ['student_natural_key']),
         'dim_weather': ('DimWeather', ['weather_date']),
-        'dim_period': ('DimPeriod', ['period_name']),
         'dim_month': ('DimMonth', ['month_number']),
         'dim_week': ('DimWeek', ['week_code']),
         'dim_day': ('DimDay', ['day_natural_key']),
@@ -230,7 +201,6 @@ def load_attendance_dimensions(dims: dict):
         df_new = dims[key].copy()
         logger.info(f"Processing {table_name} ({len(df_new)} rows)")
 
-        # Force full reload for DimDay
         if key in FORCE_RELOAD_TABLES:
             logger.info(f"Force-reloading {table_name} (truncate + insert)")
             with engine.begin() as conn:
@@ -239,7 +209,6 @@ def load_attendance_dimensions(dims: dict):
             logger.success(f"Reloaded {len(df_new)} rows into {table_name}")
             continue
 
-        # ... rest of your existing dedup logic unchanged
         try:
             df_existing = pd.read_sql(f"SELECT * FROM {table_name}", engine)
         except Exception:
@@ -274,6 +243,8 @@ def load_attendance_dimensions(dims: dict):
 
         df_new.to_sql(table_name, engine, if_exists='append', index=False, dtype=dtype)
         logger.success(f"Inserted {len(df_new)} new rows into {table_name}")
+
+
 def load_attendance_fact(fact_df: pd.DataFrame):
     if fact_df.empty:
         logger.warning("Attendance fact is empty - skipping")

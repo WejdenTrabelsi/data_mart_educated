@@ -4,7 +4,6 @@ import { LogOut, User } from 'lucide-react';
 export default function Navbar() {
   const navigate = useNavigate();
   const fullName = localStorage.getItem('full_name');
-  const role = localStorage.getItem('user_role');
 
   const handleLogout = () => {
     localStorage.clear();
@@ -26,7 +25,7 @@ export default function Navbar() {
           <User size={20} className="text-primary" />
           <div>
             <p className="font-medium text-sm">{fullName}</p>
-            <p className="text-xs text-gray-500 capitalize">{role}</p>
+            <p className="text-xs text-gray-500">Administrateur</p>
           </div>
         </div>
         <button
