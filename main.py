@@ -17,13 +17,15 @@ load_dotenv()
 
 from extract.extractor import extract_all, extract_attendance
 from load.weather_loader import load_weather
-from transform.dimensions import build_all_dimensions, build_all_attendance_dimensions
-from transform.fact import enrich_data, build_fact, build_attendance_fact
+from transform.performance.dimensions import build_all_dimensions
+from transform.attendance.dimensions import build_all_attendance_dimensions
+from transform.performance.fact import enrich_data, build_fact
+from transform.attendance.fact import build_attendance_fact
 from load.loader import (
     load_dimensions, load_fact,
     ensure_attendance_schema, load_attendance_dimensions, load_attendance_fact
 )
-from transform.dimensions import SCHOOL_START, SCHOOL_END
+from transform.performance.dimensions import SCHOOL_START, SCHOOL_END
 
 
 def main():
@@ -38,17 +40,16 @@ def main():
         logger.info("Extracting Student Attendance data...")
         df_journal, df_students, df_zones = extract_attendance()
 
-        # --- NEW: Only fetch weather for dates we actually have attendance for ---
+        # Weather: load from static cache
         if not df_journal.empty and "session_start" in df_journal.columns:
             journal_min = pd.to_datetime(df_journal["session_start"]).min().date()
             journal_max = pd.to_datetime(df_journal["session_start"]).max().date()
-            # Clamp to school year bounds just in case
             weather_start = max(journal_min, SCHOOL_START)
             weather_end   = min(journal_max, SCHOOL_END)
         else:
             weather_start, weather_end = SCHOOL_START, SCHOOL_END
 
-        logger.info(f"Extracting Weather data for {weather_start} → {weather_end}...")
+        logger.info(f"Loading Weather data for {weather_start} → {weather_end}...")
         raw_weather = load_weather(weather_start, weather_end)
 
         # =========================================================
@@ -56,7 +57,9 @@ def main():
         # =========================================================
         ensure_attendance_schema()
 
-        # ... rest of your code is unchanged ...
+        # =========================================================
+        # 3. TRANSFORM: Dimensions
+        # =========================================================
         logger.info("Building Performance dimensions...")
         dims_perf = build_all_dimensions(
             df_grid, df_gridline, df_studyplan,
@@ -69,6 +72,9 @@ def main():
             dims_perf['dim_year'], dims_perf['dim_semester']
         )
 
+        # =========================================================
+        # 4. TRANSFORM: Facts
+        # =========================================================
         logger.info("Aggregating Performance fact...")
         enriched_perf = enrich_data(
             df_gridline, df_grid, df_studyplan, df_schoolyearperiod, dims_perf['dim_year']
@@ -80,6 +86,9 @@ def main():
             df_journal, dims_att['dim_student'], dims_att['dim_day'], dims_att['dim_weather']
         )
 
+        # =========================================================
+        # 5. LOAD
+        # =========================================================
         logger.info("Loading dimensions...")
         load_dimensions(dims_perf)
         load_attendance_dimensions(dims_att)

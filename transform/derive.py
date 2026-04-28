@@ -1,24 +1,19 @@
 import re
 import pandas as pd
 
-def normalize_text(text):
-    if pd.isna(text):
-        return ""
-    return str(text).lower().strip()
 
 def derive_level(description: str) -> str:
+    """Derive academic level from study plan description."""
     if pd.isna(description):
         return "Unknown"
     
     desc = str(description).lower().strip()
-    
-    # Strip accents manually for matching
     desc_clean = (desc
         .replace('è', 'e').replace('é', 'e').replace('ê', 'e')
         .replace('à', 'a').replace('â', 'a')
         .replace(' ', '').replace('-', ''))
     
-    # 4ème année (bac) — check FIRST before 1/2/3 to avoid '4' matching '14' etc.
+    # 4ème année (bac) — check FIRST
     if re.search(r'4e?m?e?annee|4eme|4ème|4éme|bac|4math|4sc|4tech|4eco|4ème|^4-', desc_clean):
         return "4ème année (bac)"
     if re.search(r'^4', desc_clean):
@@ -43,7 +38,10 @@ def derive_level(description: str) -> str:
         return "3ème année"
     
     return "Unknown"
+
+
 def derive_branch(description: str) -> str:
+    """Derive academic branch from study plan description."""
     if pd.isna(description):
         return "Unknown"
     
@@ -73,13 +71,24 @@ def derive_branch(description: str) -> str:
     if re.search(r'sc|science|experimentale', desc_clean):
         return "Science"
     
-    # Bare codes like "2--Trimestre 3", "4--Trimestre 2", "4 ème année-Trimestre-1"
-    # These have NO branch keyword — use Science as default for years 2/3/4
+    # Defaults for years 2/3/4
     if re.search(r'^2', desc_clean):
-        return "Science"  # 2ème année default
+        return "Science"
     if re.search(r'^3', desc_clean):
-        return "Science"  # 3ème année default
+        return "Science"
     if re.search(r'^4', desc_clean):
-        return "Science"  # 4ème année default
+        return "Science"
     
     return "Unknown"
+
+
+def derive_weather_flags(temp_avg_c: float, precipitation: float) -> tuple[int, str]:
+    """Derive rain_flag and temp_band from weather metrics."""
+    rain_flag = 1 if precipitation > 0 else 0
+    if temp_avg_c < 10:
+        temp_band = "Cold"
+    elif temp_avg_c > 27:
+        temp_band = "Hot"
+    else:
+        temp_band = "Mild"
+    return rain_flag, temp_band
