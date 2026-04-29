@@ -3,6 +3,7 @@ import Login from './components/Login';
 import Dashboard from './pages/Dashboard';
 import Suggestions from './pages/Suggestions';
 import ProtectedRoute from './components/ProtectedRoute';
+
 import './index.css';
 
 function App() {

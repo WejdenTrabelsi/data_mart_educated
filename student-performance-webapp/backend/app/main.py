@@ -7,7 +7,7 @@ from .routers.auth import router as auth_router
 from .routers.dashboard import router as dashboard_router  # NEW
 from .models.user import Base
 from .database import engine
-
+from .routers import suggestions 
 from .chatbot import router as chatbot_router, init_chatbot
 
 app = FastAPI(
@@ -27,7 +27,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(dashboard_router)  # NEW - replaces embed_router
 app.include_router(chatbot_router)
-
+app.include_router(suggestions.router)
 @app.on_event("startup")
 def startup_event():
     Base.metadata.create_all(bind=engine)
