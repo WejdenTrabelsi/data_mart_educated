@@ -18,7 +18,7 @@ export default function ChatWidget() {
       id: "welcome",
       role: "assistant",
       content:
-        "👋 Hello! I'm your BI Assistant. Ask me about student performance metrics, definitions, or trends.",
+        "👋 Salut! Je suis votre assistante BI. Posez moi des questions sur la performance et la présence de vos étudiants!.",
       source: "rag",
     },
   ]);
