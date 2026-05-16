@@ -159,6 +159,7 @@ export default function Dashboard() {
 
     if (activeTab === "global") {
       fetchData("/dashboard/performance", perfFilters, setPerfData, setPerfOptions);
+      console.log("hhfz"+perfData)
     } else {
       fetchData("/dashboard/attendance", attFilters, setAttData, setAttOptions);
     }
@@ -226,7 +227,7 @@ export default function Dashboard() {
             {[
               { key: "global", label: "Dashboard Global" },
               { key: "attendance", label: "Student Attendance" },
-            ].map((t) => (
+            ].map((t) => (//creates a button for each
               <button
                 key={t.key}
                 onClick={() => setActiveTab(t.key as TabKey)}

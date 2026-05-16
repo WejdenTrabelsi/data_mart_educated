@@ -12,6 +12,9 @@ from pydantic_settings import BaseSettings
 # python-dotenv reads the .env file (key=value pairs) into environment variables
 from dotenv import load_dotenv
 
+# typing gives us Optional for fields that may not exist in .env
+from typing import Optional
+
 # os allows us to read those environment variables
 import os
 
@@ -48,15 +51,15 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 1440))
     
     # -----------------------------------------------------------------------
-    # The following two variables belong to the METABASE dashboard module.
-    # They are NOT used by authentication but live here for convenience.
-    # METABASE_SECRET_KEY is used to cryptographically sign embedded iframes.
+    # METABASE fields are now OPTIONAL since Metabase is no longer used.
+    # Chart.js is used instead for all dashboard visualizations.
+    # Optional[str] = None allows these to be missing from .env without error.
     # -----------------------------------------------------------------------
-    METABASE_SECRET_KEY: str = os.getenv("METABASE_SECRET_KEY")
+    METABASE_SECRET_KEY: Optional[str] = os.getenv("METABASE_SECRET_KEY")
     
     # METABASE_SITE_URL is the base address where Metabase is running.
-    # The default fallback is localhost:3000 if .env omits it.
-    METABASE_SITE_URL: str = os.getenv("METABASE_SITE_URL", "http://localhost:3000")
+    # Falls back to None if not present in .env.
+    METABASE_SITE_URL: Optional[str] = os.getenv("METABASE_SITE_URL")
 
 # ---------------------------------------------------------------------------
 # We create exactly ONE instance of Settings and export it.

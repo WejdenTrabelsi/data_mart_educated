@@ -64,14 +64,7 @@ export default function Suggestions() {
                 Recommandations générées à partir de l'analyse de vos données actuelles.
               </p>
             </div>
-            <button
-              onClick={fetchSuggestions}
-              disabled={loading}
-              className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 disabled:opacity-50 transition"
-            >
-              <span className={loading ? "animate-spin inline-block" : ""}>↻</span>
-              Régénérer
-            </button>
+            
           </div>
 
           {error && (
