@@ -24,7 +24,7 @@ import logo from "../assets/logo.png"; // ← Logo import
 // Register Chart.js components once
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, Title, Tooltip, Legend);
 
-type TabKey = "global" | "attendance";
+type TabKey = "global" | "attendance" ;
 
 // ── Color palette ──
 const COLORS = {
@@ -135,16 +135,22 @@ export default function Dashboard() {
   // ── Generic fetcher for both endpoints ──
   useEffect(() => {
     const fetchData = async (
-      endpoint: string,
-      filters: Record<string, string>,
-      setData: (d: any) => void,
-      setOpts: (o: any) => void,
+      endpoint: string,//"/dashboard/performance" or "/dashboard/attendance"
+      filters: Record<string, string>,//{branch:"science",level:""}
+      setData: (d: any) => void,//setPerfData or setAttData
+      setOpts: (o: any) => void,//setPerfOptions or setAttOptions
     ) => {
       setLoading(true);
       setError("");
       try {
         const params = new URLSearchParams();
+        //Object.entries(filters)= turns{branch:"Sc",level:""} into [["branch","science"],["level",""]]
+        //forEach(([k,v]))=> : loop through each [key,value] pair
+        //v&&params.append(k,v): if value is truthy(not empty) append to url
         Object.entries(filters).forEach(([k, v]) => v && params.append(k, v));
+        //dynamic loop through ALL filter keys, not just branch/level
+        //k: the key: "branch","level","semester","year"
+        //v: the value: "science", ""
         const res = await axios.get(`${API_URL}${endpoint}?${params}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -229,10 +235,11 @@ export default function Dashboard() {
               { key: "attendance", label: "Student Attendance" },
             ].map((t) => (//creates a button for each
               <button
-                key={t.key}
-                onClick={() => setActiveTab(t.key as TabKey)}
-                className={`px-6 py-2 rounded-xl font-semibold transition ${
+                key={t.key}//react requires unique keys in lists
+                onClick={() => setActiveTab(t.key as TabKey)}//click -> update state as TabKey tells typescript that it's valid
+                className={`px-6 py-2 rounded-xl font-semibold transition ${//template for dynamic classes
                   activeTab === t.key ? "bg-primary text-white" : "bg-white shadow hover:bg-gray-50"
+                  //if this tab is active then purple background if not white background
                 }`}
               >
                 {t.label}
@@ -252,7 +259,10 @@ export default function Dashboard() {
           {/* ═══════════════════════════════════════════════════════════════
               PERFORMANCE TAB
           ═══════════════════════════════════════════════════════════════ */}
-          {!loading && activeTab === "global" && perfData && (
+          {!loading && activeTab === "global" && perfData && ( 
+            //! loading don't show content while fetching
+            // activeTab=="global" only show this block when on global tab
+            //perfData guard agaisnt null (data hasn't arrived yet)
             <div className="space-y-6">
               {/* Filters */}
               <FilterBar

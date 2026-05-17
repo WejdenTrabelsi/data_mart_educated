@@ -1,35 +1,27 @@
-# ---------------------------------------------------------------------------
-# CONFIG.PY  --  Central Configuration Hub
-# ---------------------------------------------------------------------------
 # This file is the "settings brain" of the entire backend.
 # It reads secret values from the .env file and exposes them as a clean
 # Python object that every other module can import safely.
-# ---------------------------------------------------------------------------
 
 # Pydantic Settings gives us automatic validation + type checking for env vars
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings 
 
 # python-dotenv reads the .env file (key=value pairs) into environment variables
 from dotenv import load_dotenv
 
-# typing gives us Optional for fields that may not exist in .env
-from typing import Optional
 
 # os allows us to read those environment variables
-import os
+import os #python could talk to the computaaarr 
 
-# ---------------------------------------------------------------------------
-# load_dotenv() looks for a file named .env in the current directory.
-# It takes every line like SECRET_KEY=abc123 and puts it into the OS
-# environment so os.getenv() can see it later.
-# ---------------------------------------------------------------------------
-load_dotenv()
+#this is a function call, it runs immediatly when python imports this file
+load_dotenv() #without it os.getenv() will see nothing
+#our .env file is now loaded into memory 
 
-# ---------------------------------------------------------------------------
+
+
 # We define a Settings class that inherits from BaseSettings.
 # BaseSettings is special: it automatically maps class attributes to
 # environment variables with the SAME NAME.
-# ---------------------------------------------------------------------------
+
 class Settings(BaseSettings):
     
     # DATABASE_URL holds the ODBC connection string used by SQLAlchemy.
@@ -49,21 +41,11 @@ class Settings(BaseSettings):
     # The default value 1440 means 24 hours (60 * 24).
     # int() converts the string from .env into a real integer.
     ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 1440))
+#the second argument 1440 is a default fallback (the original 1440 is in .env)
     
-    # -----------------------------------------------------------------------
-    # METABASE fields are now OPTIONAL since Metabase is no longer used.
-    # Chart.js is used instead for all dashboard visualizations.
-    # Optional[str] = None allows these to be missing from .env without error.
-    # -----------------------------------------------------------------------
-    METABASE_SECRET_KEY: Optional[str] = os.getenv("METABASE_SECRET_KEY")
-    
-    # METABASE_SITE_URL is the base address where Metabase is running.
-    # Falls back to None if not present in .env.
-    METABASE_SITE_URL: Optional[str] = os.getenv("METABASE_SITE_URL")
+   
 
-# ---------------------------------------------------------------------------
 # We create exactly ONE instance of Settings and export it.
 # This is called the Singleton pattern: every file imports the same object,
 # so we never re-read .env multiple times.
-# ---------------------------------------------------------------------------
 settings = Settings()
