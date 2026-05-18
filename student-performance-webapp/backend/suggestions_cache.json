@@ -1,0 +1,35 @@
+{
+  "suggestions": [
+    {
+      "category": "performance",
+      "title": "Réviser la pédagogie pour la matière 'مقال'",
+      "description": "En raison de ses résultats faibles, il est nécessaire d'analyser les enseignements et les méthodes utilisées pour cette matière afin de trouver des solutions pour améliorer les performances.",
+      "priority": "high"
+    },
+    {
+      "category": "performance",
+      "title": "Améliorer la performance dans la filière Technique",
+      "description": "Il est nécessaire de prendre des mesures pour améliorer les résultats dans cette filière, cela peut inclure des séances d'aide individuelle ou des ateliers supplémentaires.",
+      "priority": "high"
+    },
+    {
+      "category": "attendance",
+      "title": "Enquête sur les absences dans la zone Bouhsina Sousse",
+      "description": "Il est important de comprendre pourquoi il y a si nombre d'absences dans cette zone, cela peut être lié à des problèmes de transport ou d'autres raisons. Une enquête pourra permettre de trouver des solutions.",
+      "priority": "medium"
+    },
+    {
+      "category": "attendance",
+      "title": "Réduire le nombre d'absences pendant le mois de septembre",
+      "description": "Le mois de septembre a enregistré un nombre élevé d'absences, il est nécessaire de prendre des mesures pour réduire ce nombre afin de maintenir une présence régulière.",
+      "priority": "medium"
+    },
+    {
+      "category": "general",
+      "title": "Analyser les données météorologiques et leur impact sur l'absentéisme",
+      "description": "Bien que les données indiquent qu'il n'y a pas eu de pluie, il est possible que d'autres facteurs météorologiques puissent avoir un impact sur l'absentéisme. Une analyse détaillée peut permettre de trouver des solutions.",
+      "priority": "low"
+    }
+  ],
+  "generated_at": "2026-05-18T02:06:00"
+}

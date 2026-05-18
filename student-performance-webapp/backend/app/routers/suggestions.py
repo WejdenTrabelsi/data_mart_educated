@@ -1,19 +1,70 @@
+import os
+import json
+import re
+import asyncio
+from datetime import datetime
+from typing import List, Dict, Optional
+from threading import Lock
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import text
-from typing import List, Dict
 from pydantic import BaseModel
+
 from ..database import get_db
 from ..routers.auth import get_current_user
 from ..models.user import User
 from ..chatbot.config import llm
-import json
-import re
-from datetime import datetime
 
 router = APIRouter(prefix="/suggestions", tags=["suggestions"])
 
+# ---------------------------------------------------------------------------
+# CACHE CONFIG
+# ---------------------------------------------------------------------------
+_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+_CACHE_FILE = os.path.join(_PROJECT_ROOT, "suggestions_cache.json")
 
+_cached_response: Optional[dict] = None
+_cache_lock = Lock()
+
+print(f"[SUGGESTIONS] Cache file: {_CACHE_FILE}")
+
+
+# ---------------------------------------------------------------------------
+# DISK CACHE
+# ---------------------------------------------------------------------------
+def _load_disk_cache():
+    global _cached_response
+    try:
+        if os.path.exists(_CACHE_FILE):
+            with open(_CACHE_FILE, "r", encoding="utf-8") as f:
+                _cached_response = json.load(f)
+            print("[SUGGESTIONS] ✅ Loaded cache from disk")
+        else:
+            _cached_response = None
+            print("[SUGGESTIONS] ⚠️ No cache file found")
+    except Exception as e:
+        print("[CACHE ERROR]", e)
+        _cached_response = None
+
+
+def _save_disk_cache():
+    if not _cached_response:
+        return
+    try:
+        with open(_CACHE_FILE, "w", encoding="utf-8") as f:
+            json.dump(_cached_response, f, ensure_ascii=False, indent=2)
+        print("[SUGGESTIONS] 💾 Cache saved to disk")
+    except Exception as e:
+        print("[CACHE SAVE ERROR]", e)
+
+
+_load_disk_cache()
+
+
+# ---------------------------------------------------------------------------
+# MODELS
+# ---------------------------------------------------------------------------
 class SuggestionItem(BaseModel):
     category: str
     title: str
@@ -26,6 +77,9 @@ class SuggestionsResponse(BaseModel):
     generated_at: str
 
 
+# ---------------------------------------------------------------------------
+# DB QUERIES
+# ---------------------------------------------------------------------------
 def _fetch_performance_summary(db: Session) -> Dict:
     kpi = db.execute(text("""
         SELECT ROUND(AVG(avg_grade),2) as avg_grade,
@@ -90,78 +144,101 @@ def _fetch_attendance_summary(db: Session) -> Dict:
     }
 
 
+# ---------------------------------------------------------------------------
+# PROMPT
+# ---------------------------------------------------------------------------
 _SUGGESTIONS_PROMPT = """Tu es un assistant IA pour un tableau de bord scolaire.
-À partir du résumé de données ci-dessous, génère 3 à 5 suggestions concrètes et actionnables pour améliorer les résultats et la présence des élèves.
-Réponds en français.
+À partir des données, génère 3 à 5 suggestions actionnables en français.
 
-── DONNÉES PERFORMANCE ──
-- Moyenne générale : {perf_avg_grade}/20
-- Taux de réussite moyen : {perf_avg_success_rate}%
-- Filière la plus faible : {worst_branch_name} ({worst_branch_rate}% de réussite)
-- Matière la plus faible : {worst_subject_name} (moyenne {worst_subject_grade}/20)
+── PERFORMANCE ──
+- Moyenne : {perf_avg_grade}/20
+- Réussite : {perf_avg_success_rate}%
+- Filière faible : {worst_branch_name} ({worst_branch_rate}%)
+- Matière faible : {worst_subject_name} ({worst_subject_grade}/20)
 
-── DONNÉES ABSENCES ──
-- Total absences : {att_total_absences}
-- Zone la plus concernée : {worst_zone_name} ({worst_zone_absences} absences)
-- Mois le plus critique : {worst_month_name} ({worst_month_absences} absences)
-- Impact météo : {rain_impact}
+── ABSENCES ──
+- Total : {att_total_absences}
+- Zone critique : {worst_zone_name} ({worst_zone_absences})
+- Mois critique : {worst_month_name} ({worst_month_absences})
+- Météo : {rain_impact}
 
-RÈGLES :
-1. Chaque suggestion doit être spécifique et actionnable.
-2. Catégories autorisées : "performance", "attendance", "general".
-3. Priorité selon la gravité : "high", "medium", "low".
-4. Exemple d'actions : "Vérifier le transport dans la zone X", "Réviser la pédagogie pour la matière Y".
-5. Retourne UNIQUEMENT un objet JSON valide avec cette structure exacte :
+Retourne UNIQUEMENT JSON:
 {{
   "suggestions": [
-    {{"category": "performance|attendance|general", "title": "...", "description": "...", "priority": "high|medium|low"}}
+    {{"category": "...", "title": "...", "description": "...", "priority": "..."}}
   ]
 }}
 """
 
 
+# ---------------------------------------------------------------------------
+# ROUTE
+# ---------------------------------------------------------------------------
 @router.post("/generate", response_model=SuggestionsResponse)
 async def generate_suggestions(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
+    refresh: bool = False,
 ):
-    perf = _fetch_performance_summary(db)
-    att = _fetch_attendance_summary(db)
+    global _cached_response
 
-    rain_str = ", ".join([f"{r['condition']}: {r['absences']}" for r in att["rain_impact"]])
+    # ---------------- CACHE FAST PATH ----------------
+    print("[CACHE DEBUG] is_none =", _cached_response is None)
 
-    prompt = _SUGGESTIONS_PROMPT.format(
-        perf_avg_grade=perf["avg_grade"],
-        perf_avg_success_rate=perf["avg_success_rate"],
-        worst_branch_name=perf["worst_branch"]["branch_name"] if perf["worst_branch"] else "N/A",
-        worst_branch_rate=perf["worst_branch"]["rate"] if perf["worst_branch"] else "N/A",
-        worst_subject_name=perf["worst_subject"]["content_name"] if perf["worst_subject"] else "N/A",
-        worst_subject_grade=perf["worst_subject"]["grade"] if perf["worst_subject"] else "N/A",
-        att_total_absences=att["total_absences"],
-        worst_zone_name=att["worst_zone"]["zone_description"] if att["worst_zone"] else "N/A",
-        worst_zone_absences=att["worst_zone"]["absences"] if att["worst_zone"] else "N/A",
-        worst_month_name=att["worst_month"]["month_name"] if att["worst_month"] else "N/A",
-        worst_month_absences=att["worst_month"]["absences"] if att["worst_month"] else "N/A",
-        rain_impact=rain_str,
-    )
+    if _cached_response is not None and not refresh:
+        return _cached_response
 
-    response = llm.invoke(prompt)
-    content = response.content
+    # ---------------- THREAD SAFETY ----------------
+    with _cache_lock:
+        if _cached_response is not None and not refresh:
+            return _cached_response
 
-    # Extract JSON (LLMs sometimes wrap it in markdown)
-    try:
-        json_match = re.search(r'\{.*\}', content, re.DOTALL)
-        data = json.loads(json_match.group()) if json_match else json.loads(content)
-        suggestions = data.get("suggestions", [])
-    except Exception:
-        suggestions = [{
-            "category": "general",
-            "title": "Analyse des données",
-            "description": content[:300] + "...",
-            "priority": "medium"
-        }]
+        # ---------------- FETCH DATA ONLY IF NEEDED ----------------
+        perf = _fetch_performance_summary(db)
+        att = _fetch_attendance_summary(db)
 
-    return {
-        "suggestions": suggestions,
-        "generated_at": datetime.now().isoformat()
-    }
+        rain_str = ", ".join(
+            f"{r['condition']}: {r['absences']}" for r in att["rain_impact"]
+        )
+
+        prompt = _SUGGESTIONS_PROMPT.format(
+            perf_avg_grade=perf["avg_grade"],
+            perf_avg_success_rate=perf["avg_success_rate"],
+            worst_branch_name=perf["worst_branch"]["branch_name"] if perf["worst_branch"] else "N/A",
+            worst_branch_rate=perf["worst_branch"]["rate"] if perf["worst_branch"] else "N/A",
+            worst_subject_name=perf["worst_subject"]["content_name"] if perf["worst_subject"] else "N/A",
+            worst_subject_grade=perf["worst_subject"]["grade"] if perf["worst_subject"] else "N/A",
+            att_total_absences=att["total_absences"],
+            worst_zone_name=att["worst_zone"]["zone_description"] if att["worst_zone"] else "N/A",
+            worst_zone_absences=att["worst_zone"]["absences"] if att["worst_zone"] else "N/A",
+            worst_month_name=att["worst_month"]["month_name"] if att["worst_month"] else "N/A",
+            worst_month_absences=att["worst_month"]["absences"] if att["worst_month"] else "N/A",
+            rain_impact=rain_str,
+        )
+
+        # ---------------- LLM CALL ----------------
+        response = await asyncio.to_thread(llm.invoke, prompt)
+        content = response.content
+
+        # safer JSON extraction
+        try:
+            json_match = re.search(r"\{.*\}", content, re.DOTALL)
+            data = json.loads(json_match.group()) if json_match else json.loads(content)
+            suggestions = data.get("suggestions", [])
+        except Exception:
+            suggestions = [{
+                "category": "general",
+                "title": "Analyse des données",
+                "description": content[:300],
+                "priority": "medium"
+            }]
+
+        # ---------------- UPDATE CACHE ----------------
+        _cached_response = {
+            "suggestions": suggestions,
+            "generated_at": datetime.now().isoformat()
+        }
+
+        _save_disk_cache()
+
+        return _cached_response

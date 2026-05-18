@@ -1,23 +1,19 @@
-# ---------------------------------------------------------------------------
-# SCHEMAS/AUTH.PY  --  Data Shapes (Pydantic Models)
-# ---------------------------------------------------------------------------
-# Schemas are "contracts" that describe what data should look like.
+#schemas/auth.py is the API contract(what the HTTP request/response expects).
 # FastAPI uses them to:
-#   - Validate incoming JSON/form data automatically
-#   - Document the API in the interactive Swagger UI
-#   - Serialize outgoing data so Python objects become clean JSON
-# ---------------------------------------------------------------------------
+# +Validate incoming JSON/form data automatically
+# +Document the API in the interactive Swagger UI
+# +Serialize outgoing data so Python objects become clean JSON
 
-# BaseModel is the core of Pydantic. Every schema inherits from it.
-from pydantic import BaseModel
+#pydantic: The data-validation library. FastAPI is built on top of it.
+# BaseModel is the parent class. Every schema inherits from it.
+from pydantic import BaseModel # BaseModelgives auto type checking json serialization swagger ui generattion n error msg when validation fails
 
-# Optional lets us declare that a field may be None.
+# Optional lets us declare that a field may be None. (3ibara string | null)
 from typing import Optional
 
 
-# ---------------------------------------------------------------------------
-# Token  --  What the backend returns after a successful login
-# ---------------------------------------------------------------------------
+# What the backend returns after a successful login
+#Token is the schema name it describes what /auth/login returns
 class Token(BaseModel):
     # The actual JWT string (long, encoded, signed).
     access_token: str
@@ -30,21 +26,15 @@ class Token(BaseModel):
     full_name: str
 
 
-# ---------------------------------------------------------------------------
-# TokenData  --  Internal representation of what we store inside a JWT
-# ---------------------------------------------------------------------------
+#TokenData is an internal schema front never sees it. it's only used inside 
+#get_current_user to hold the username extracted from the JWT playload
 class TokenData(BaseModel):
     # The username extracted from the "sub" claim.
     # Optional because during validation we might not have it yet.
     username: Optional[str] = None
 
+"""i mean we could just do username = payload.get("sub")
+but it's more for type safety (for example if we later change the token to hold roles permissions
+we change just TokenData instead of every function that used the raw string)
+ """
 
-# ---------------------------------------------------------------------------
-# UserLogin  --  Optional schema for raw JSON login (not used by OAuth2 form)
-# ---------------------------------------------------------------------------
-class UserLogin(BaseModel):
-    # The login identifier typed by the user.
-    username: str
-    
-    # The plain text password. It is NOT stored; only used for verification.
-    password: str

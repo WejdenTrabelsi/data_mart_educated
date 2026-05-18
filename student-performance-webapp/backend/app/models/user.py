@@ -1,15 +1,15 @@
-# ---------------------------------------------------------------------------
-# MODELS/USER.PY  --  SQL Table Blueprint (ORM Model)
-# ---------------------------------------------------------------------------
+
+#SQL Table Blueprint (ORM Model)
+
 # This file defines what the "Users" table looks like in SQL Server.
 # Instead of writing raw SQL CREATE TABLE statements, we write a Python class.
 # SQLAlchemy translates this class into SQL automatically.
-# ---------------------------------------------------------------------------
 
 # Column      = represents one column in the table
 # Integer     = SQL INT
 # String      = SQL VARCHAR
 # DateTime    = SQL DATETIME
+
 from sqlalchemy import Column, Integer, String, DateTime
 
 # func gives us database functions like NOW() / GETDATE()
@@ -18,20 +18,22 @@ from sqlalchemy.sql import func
 # declarative_base is the factory that creates the base class all models
 # must inherit from. It connects the Python class to SQLAlchemy machinery.
 from sqlalchemy.orm import declarative_base
+"""declarative_base() creates a registry base class.
+ When models inherit from Base, 
+ SQLAlchemy automatically discovers them and stores their table definitions in Base.metadata. 
+ This allows create_all() (in seed_admin.py) to know which tables to build."""
 
-# ---------------------------------------------------------------------------
 # Base is the "root" object. Every table in your app should inherit from it.
 # It stores metadata (table names, columns, relationships) that SQLAlchemy
 # uses to generate SQL queries and create tables.
-# ---------------------------------------------------------------------------
+
 Base = declarative_base()
 
-# ---------------------------------------------------------------------------
 # The User class maps 1-to-1 to a table named "Users" in SQL Server.
 # Each attribute becomes a column. Each instance of this class represents
 # one row from the database.
-# ---------------------------------------------------------------------------
-class User(Base):
+
+class User(Base): #by inheriting from Base SQLAlchemy discovers this class and knows to create a table for it 
     # __tablename__ tells SQLAlchemy exactly what the SQL table is called.
     __tablename__ = "Users"
     
@@ -50,7 +52,7 @@ class User(Base):
     email = Column(String(100), unique=True, index=True, nullable=False)
     
     # password_hash stores the bcrypt-scrambled password.
-    # It is never the plain text password — that would be a security disaster.
+    # It is never the plain text password that would be a security disaster wooo
     password_hash = Column(String(255), nullable=False)
     
     # full_name is the display name shown in the frontend Navbar.

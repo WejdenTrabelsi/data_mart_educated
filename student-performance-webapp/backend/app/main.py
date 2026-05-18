@@ -1,10 +1,7 @@
-# ---------------------------------------------------------------------------
 # MAIN.PY  --  Application Entry Point
-# ---------------------------------------------------------------------------
-# This is the file you run to start the server:
 #     uvicorn app.main:app --reload
 # It assembles all routers, middleware, and startup logic into one FastAPI app.
-# ---------------------------------------------------------------------------
+
 
 # Force Python to use UTF-8 mode so special characters (accents, etc.)
 # are handled correctly on Windows.
@@ -28,49 +25,50 @@ from .database import engine
 from .routers import suggestions 
 from .chatbot import router as chatbot_router, init_chatbot
 
-# ---------------------------------------------------------------------------
 # Create the FastAPI application instance.
 # title, description, and version appear in the auto-generated docs at /docs.
-# ---------------------------------------------------------------------------
 app = FastAPI(
     title="Student Performance API",
     description="Backend for Admin Dashboard",
     version="2.0.0"
 )
 
-# ---------------------------------------------------------------------------
+
 # Add CORS middleware.
-# allow_origins=["*"] means ANY website can call this API.
+# if allow_origins=["*"] means ANY website can call this API.
 # In production you would restrict this to your exact frontend domain.
 # allow_credentials=True lets cookies/auth headers pass through.
 # allow_methods=["*"] and allow_headers=["*"] permit all HTTP verbs/headers.
-# ---------------------------------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True, #without it the Authorization header (Bearer<token>)would be rejected
     allow_methods=["*"],
     allow_headers=["*"],
 )
+"""without CORS (browser security rule not fastapi rule)
+frontend does fetch("http://localhost:8000/auth/login)
+browser sees it: wait ! this page came from localhost:5173(backend)
+but it's trying to access localhost:8000 browser BLOCKS it 
+until backend explicitly says this frontend is allowed
+that permission is CORS
 
-# ---------------------------------------------------------------------------
+"""
+
 # Mount the routers.
 # Each router brings its own URLs under its prefix.
 # For example, auth_router provides /auth/login.
-# ---------------------------------------------------------------------------
 app.include_router(auth_router)
-app.include_router(dashboard_router)  # NEW - replaces embed_router
+app.include_router(dashboard_router)  
 app.include_router(chatbot_router)
 app.include_router(suggestions.router)
 
-# ---------------------------------------------------------------------------
+
 # Startup Event
-# ---------------------------------------------------------------------------
 # @app.on_event("startup") registers a function that runs ONCE when the
 # server boots up. We use it to:
 #   1. Create SQL tables if they do not already exist (create_all).
 #   2. Initialize the AI chatbot (load models, vector DB, etc.).
-# ---------------------------------------------------------------------------
 @app.on_event("startup")
 def startup_event():
     # Base.metadata.create_all looks at every class inheriting from Base
@@ -80,11 +78,8 @@ def startup_event():
     # init_chatbot sets up the Ollama / ChromaDB components.
     init_chatbot(engine)
 
-# ---------------------------------------------------------------------------
 # Root Health-Check Endpoint
-# ---------------------------------------------------------------------------
 # Visiting GET / returns a friendly message confirming the server is alive.
-# ---------------------------------------------------------------------------
 @app.get("/")
 async def root():
-    return {"message": "✅ Student Performance Admin API is running!"}
+    return {"message": "🤠 Student Performance Admin API is running!"}
