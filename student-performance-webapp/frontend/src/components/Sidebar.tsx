@@ -8,7 +8,7 @@ export default function Sidebar() {
   const location = useLocation();
 
   return (
-    <div className={`bg-white shadow-2xl h-screen transition-all duration-300 flex flex-col ${collapsed ? 'w-16' : 'w-64'}`}>
+    <div className={`bg-white shadow-2xl sticky top-0 h-screen flex-shrink-0 transition-all duration-300 flex flex-col ${collapsed ? 'w-16' : 'w-64'}`}>
       <div className="p-4 border-b flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 bg-primary rounded-2xl flex items-center justify-center text-white font-bold text-xl">SP</div>
@@ -19,7 +19,7 @@ export default function Sidebar() {
         </button>
       </div>
 
-      <div className="flex-1 p-3 space-y-1">
+      <div className="flex-1 p-3 space-y-1 overflow-y-auto">
         <button
           onClick={() => navigate('/dashboard')}
           className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-left ${location.pathname === '/dashboard' ? 'bg-primary text-white' : 'hover:bg-gray-100'}`}

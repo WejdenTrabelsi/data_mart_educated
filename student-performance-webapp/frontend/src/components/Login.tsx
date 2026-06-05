@@ -45,6 +45,9 @@ export default function Login() {
   // browser URL instantly without a full page reload.
   const navigate = useNavigate();
 
+
+
+
   // -------------------------------------------------------------------------
   // handleLogin  --  The Form Submission Handler
   // -------------------------------------------------------------------------
@@ -180,6 +183,7 @@ export default function Login() {
             {/* Ternary operator switches text based on loading state. */}
             {loading ? 'Connexion...' : 'Se connecter'}
           </button>
+          
           
 
           

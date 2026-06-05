@@ -9,7 +9,7 @@ from sqlalchemy.engine import Engine
 from langchain_ollama import OllamaEmbeddings, ChatOllama
 # ── Ollama Configuration ─────────────────────────────────────────
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-OLLAMA_CHAT_MODEL = os.getenv("OLLAMA_CHAT_MODEL", "mistral")      # or llama3
+OLLAMA_CHAT_MODEL = os.getenv("OLLAMA_CHAT_MODEL", "qwen2.5:3b")      # or llama3
 OLLAMA_EMBED_MODEL = os.getenv("OLLAMA_EMBED_MODEL", "nomic-embed-text")
 
 # ── LangChain Models ─────────────────────────────────────────────

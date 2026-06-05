@@ -1,19 +1,28 @@
-# Business Glossary
+# Glossaire métier
 
-## Student Performance
-Any measurable outcome related to student academic achievement, including grades, pass/fail status, and enrollment counts.
+## Performance de l'étudiant
 
-## Branch
-Synonymous with "department," "major," or "field of study." Examples: Computer Science, Physics, Business Administration.
+Tout résultat mesurable lié à la réussite scolaire de l'étudiant, incluant les notes, le statut de réussite ou d'échec, ainsi que le nombre d'inscriptions.
 
-## Level
-The academic progression stage. Examples: Bachelor Year 1, Bachelor Year 3, Master Year 1, Master Year 2.
+## Branche (Filière)
 
-## Content
-A specific course, module, or subject within a branch. Examples: "Database Systems," "Machine Learning," "Calculus I."
+Synonyme de « département », « filière » ou « domaine d'études ».  
+Exemples : Informatique, Physique, Gestion d'entreprise.
 
-## Academic Year
-A 12-month instructional period, typically running from September to June. Represented as a 4-digit integer (e.g., 2024).
+## Niveau
 
-## Semester
-A subdivision of the academic year. The system supports "Fall" (S1) and "Spring" (S2) semesters.
+Le stade de progression académique.  
+Exemples : Licence 1ère année, Licence 3ème année, Master 1ère année, Master 2ème année.
+
+## Contenu (Matière)
+
+Un cours, un module ou une matière spécifique au sein d'une branche.  
+Exemples : « Systèmes de bases de données », « Apprentissage automatique », « Calcul I ».
+
+## Année universitaire
+
+Une période d'enseignement de 12 mois, généralement de septembre à juin. Représentée par un entier à 4 chiffres (ex. : 2024).
+
+## Semestre
+
+Une subdivision de l'année universitaire. Le système prend en charge les semestres « Automne » (S1) et « Printemps » (S2).

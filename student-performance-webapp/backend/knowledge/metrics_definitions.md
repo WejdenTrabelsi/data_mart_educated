@@ -1,14 +1,18 @@
-# Metrics Definitions
+# Définitions des indicateurs
 
-## Success Rate
-The **success rate** represents the percentage of students who passed a given course or content area. It is calculated as:
+## Taux de réussite
 
-    (Number of passing students / Total number of students) × 100
+Le **taux de réussite** représente le pourcentage d'étudiants ayant réussi un cours ou une matière donné(e). Il se calcule comme suit :
 
-A student is considered "passing" when their grade is 10/20 or higher. Success rate is tracked at the branch, level, and content granularity.
+    (Nombre d'étudiants ayant réussi / Nombre total d'étudiants) × 100
 
-## Average Grade (avg_grade)
-The **average grade** is the arithmetic mean of all student grades for a specific dimension combination (year, semester, level, branch, content). Grades are on a 0–20 scale.
+Un étudiant est considéré comme « ayant réussi » lorsque sa note est supérieure ou égale à 10/20.  
+Le taux de réussite est suivi au niveau de la branche, du niveau et de la matière.
 
-## Number of Students (nb_students)
-The **number of students** metric counts distinct students enrolled in a given course/content within the selected dimensional context. This is a snapshot count at the time of data extraction.
+## Note moyenne (avg_grade)
+
+La **note moyenne** est la moyenne arithmétique de toutes les notes des étudiants pour une combinaison de dimensions donnée (année, semestre, niveau, branche, matière). Les notes sont sur une échelle de 0 à 20.
+
+## Nombre d'étudiants (nb_students)
+
+L'indicateur **nombre d'étudiants** compte les étudiants distincts inscrits dans un cours ou une matière donnée(e), dans le contexte dimensionnel sélectionné. Il s'agit d'un comptage à la date d'extraction des données.

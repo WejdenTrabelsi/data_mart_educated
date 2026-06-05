@@ -44,19 +44,38 @@ def _generate_mock_weather(start_date: date, end_date: date) -> pd.DataFrame:
     records = []
     d = start_date
     np.random.seed(42)
+
+    # Realistic rainy days for Sousse, September 2020
+    KNOWN_RAINY_DAYS = {
+        date(2020, 9, 3):  ("Thunderstorm", 12.4, "Thunderstorm with heavy rain"),
+        date(2020, 9, 4):  ("Rain",          6.2, "Moderate rain throughout the day"),
+        date(2020, 9, 9):  ("Thunderstorm", 18.7, "Severe thunderstorm"),
+        date(2020, 9, 10): ("Rain",          4.1, "Light rain in the morning"),
+        date(2020, 9, 21): ("Rain",          9.3, "Rain with strong winds"),
+        date(2020, 9, 17): ("Drizzle",       2.1, "Light drizzle"),
+        date(2020, 9, 25): ("Rain",          7.8, "Afternoon rain showers"),
+    }
+
     while d <= end_date:
         month = d.month
         base_temp = 77 if month in [9, 10] else 60
         temp_avg = base_temp + np.random.normal(0, 3)
+
+        if d in KNOWN_RAINY_DAYS:
+            condition, precip, desc = KNOWN_RAINY_DAYS[d]
+        else:
+            condition, precip, desc = "Clear", 0.0, "Clear conditions throughout the day."
+
         records.append({
             "weather_date": d,
-            "weather_condition": "Clear",
+            "weather_condition": condition,
             "temp_max_f": round(temp_avg + 5, 1),
             "temp_min_f": round(temp_avg - 5, 1),
             "temp_avg_f": round(temp_avg, 1),
-            "precipitation": 0.0,
-            "weather_description": "Clear conditions throughout the day."
+            "precipitation": precip,
+            "weather_description": desc,
         })
         d += timedelta(days=1)
+
     logger.warning(f"Mock weather generated: {len(records)} days")
     return pd.DataFrame(records)

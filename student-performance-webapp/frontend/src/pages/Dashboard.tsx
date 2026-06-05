@@ -19,17 +19,17 @@ import ChatWidget from "../components/ChatWidget";
 import KPICard from "../components/KPICard";
 import ChartCard from "../components/ChartCard";
 import FilterBar from "../components/FilterBar";
-import logo from "../assets/logo.png"; // ← Logo import
+import logo from "../assets/logo.png";
 
 // Register Chart.js components once
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, Title, Tooltip, Legend);
 
-type TabKey = "global" | "attendance" ;
+type TabKey = "global" | "attendance";
 
 // ── Color palette ──
 const COLORS = {
   primary: "#6366f1", secondary: "#8b5cf6", success: "#22c55e",
-  warning: "#f59e0b", danger: "#ef4444", info: "#3b82f6",
+  warning: "#f59e0b", danger: "#ef4444", info: "3b82f6",
   purple: "#a855f7", pink: "#ec4899", teal: "#14b8a6", orange: "#f97316",
 };
 
@@ -64,7 +64,7 @@ const lineChart = (labels: string[], data: number[], label: string, color: strin
   labels,
   datasets: [{
     label, data, borderColor: color,
-    backgroundColor: `${color}1A`, // 10 % opacity
+    backgroundColor: `${color}1A`,
     tension: 0.4, fill: true, pointRadius: 5, pointBackgroundColor: color,
   }],
 });
@@ -76,7 +76,6 @@ const doughnutChart = (labels: string[], data: number[], colors: string[]) => ({
 });
 
 // ── Common Chart.js options ──
-// Added bottom padding + maxRotation so x-axis labels never overflow the white card
 const commonOpts = {
   responsive: true,
   maintainAspectRatio: false,
@@ -124,9 +123,14 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Filters
-  const [perfFilters, setPerfFilters] = useState({ branch: "", level: "", semester: "", year: "" });
-  const [attFilters, setAttFilters] = useState({ day: "", month: "", semester: "", year: "", zone: "" });
+  // Filters — now each key holds a string[] instead of string so multiple values can be selected
+  // example: { branch: ["Science", "Tech"], level: [], semester: [], year: [] }
+  const [perfFilters, setPerfFilters] = useState<Record<string, string[]>>({
+    branch: [], level: [], semester: [], year: []
+  });
+  const [attFilters, setAttFilters] = useState<Record<string, string[]>>({
+    day: [], month: [], semester: [], year: [], zone: []
+  });
 
   // Dropdown options returned by backend
   const [perfOptions, setPerfOptions] = useState<any>({});
@@ -135,22 +139,24 @@ export default function Dashboard() {
   // ── Generic fetcher for both endpoints ──
   useEffect(() => {
     const fetchData = async (
-      endpoint: string,//"/dashboard/performance" or "/dashboard/attendance"
-      filters: Record<string, string>,//{branch:"science",level:""}
-      setData: (d: any) => void,//setPerfData or setAttData
-      setOpts: (o: any) => void,//setPerfOptions or setAttOptions
+      endpoint: string,
+      // filters is now Record<string, string[]> — each key maps to an array of selected values
+      filters: Record<string, string[]>,
+      setData: (d: any) => void,
+      setOpts: (o: any) => void,
     ) => {
       setLoading(true);
       setError("");
       try {
         const params = new URLSearchParams();
-        //Object.entries(filters)= turns{branch:"Sc",level:""} into [["branch","science"],["level",""]]
-        //forEach(([k,v]))=> : loop through each [key,value] pair
-        //v&&params.append(k,v): if value is truthy(not empty) append to url
-        Object.entries(filters).forEach(([k, v]) => v && params.append(k, v));
-        //dynamic loop through ALL filter keys, not just branch/level
-        //k: the key: "branch","level","semester","year"
-        //v: the value: "science", ""
+        // Object.entries(filters) turns { branch: ["Science","Tech"], level: [] } into
+        // [["branch",["Science","Tech"]], ["level",[]]]
+        // For each key, we loop through its array and append each value separately
+        // so the URL becomes ?branch=Science&branch=Tech which FastAPI reads as a list
+        Object.entries(filters).forEach(([k, values]) => {
+          values.forEach((v) => v && params.append(k, v));
+        });
+
         const res = await axios.get(`${API_URL}${endpoint}?${params}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -165,14 +171,13 @@ export default function Dashboard() {
 
     if (activeTab === "global") {
       fetchData("/dashboard/performance", perfFilters, setPerfData, setPerfOptions);
-      console.log("hhfz"+perfData)
     } else {
       fetchData("/dashboard/attendance", attFilters, setAttData, setAttOptions);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab, perfFilters, attFilters]);
+  }, [activeTab, JSON.stringify(perfFilters), JSON.stringify(attFilters)]);
 
-  // ── Performance charts (memo-like helpers) ──
+  // ── Performance charts ──
   const subjectsChart = perfData
     ? barChart(perfData.subjects.map((s: any) => s.content_name), perfData.subjects.map((s: any) => s.avg_grade), "Moyenne", COLORS.primary)
     : null;
@@ -181,7 +186,6 @@ export default function Dashboard() {
     ? lineChart(perfData.trends.map((t: any) => t.year_name), perfData.trends.map((t: any) => t.avg_grade), "Moyenne Générale", COLORS.secondary)
     : null;
 
-  // ↓ Changed to bar chart as requested — pie/doughnut was misleading for comparing rates
   const branchesChart = perfData
     ? barChart(perfData.branches.map((b: any) => b.branch_name), perfData.branches.map((b: any) => b.success_rate), "Taux %", COLORS.warning)
     : null;
@@ -212,7 +216,7 @@ export default function Dashboard() {
     : null;
 
   return (
-    <div className="flex min-h-screen bg-[#F5F4FF]">
+    <div className="flex min-h-screen bg-[#F5F4FF] items-start">
       <Sidebar />
 
       <div className="flex-1">
@@ -233,13 +237,12 @@ export default function Dashboard() {
             {[
               { key: "global", label: "Dashboard Global" },
               { key: "attendance", label: "Student Attendance" },
-            ].map((t) => (//creates a button for each
+            ].map((t) => (
               <button
-                key={t.key}//react requires unique keys in lists
-                onClick={() => setActiveTab(t.key as TabKey)}//click -> update state as TabKey tells typescript that it's valid
-                className={`px-6 py-2 rounded-xl font-semibold transition ${//template for dynamic classes
+                key={t.key}
+                onClick={() => setActiveTab(t.key as TabKey)}
+                className={`px-6 py-2 rounded-xl font-semibold transition ${
                   activeTab === t.key ? "bg-primary text-white" : "bg-white shadow hover:bg-gray-50"
-                  //if this tab is active then purple background if not white background
                 }`}
               >
                 {t.label}
@@ -259,18 +262,27 @@ export default function Dashboard() {
           {/* ═══════════════════════════════════════════════════════════════
               PERFORMANCE TAB
           ═══════════════════════════════════════════════════════════════ */}
-          {!loading && activeTab === "global" && perfData && ( 
-            //! loading don't show content while fetching
-            // activeTab=="global" only show this block when on global tab
-            //perfData guard agaisnt null (data hasn't arrived yet)
+          {!loading && activeTab === "global" && perfData && (
             <div className="space-y-6">
               {/* Filters */}
               <FilterBar
                 filters={perfFilters}
                 options={perfOptions}
                 config={PERF_FILTER_CONFIG}
-                onChange={(key, value) => setPerfFilters((p) => ({ ...p, [key]: value }))}
-                onClear={() => setPerfFilters({ branch: "", level: "", semester: "", year: "" })}
+                // when user toggles a value: if it's already selected remove it, if not add it
+                // this lets the user build a list of selected values per filter key
+                onChange={(key, value) =>
+                  setPerfFilters((prev) => {
+                    const current = prev[key] || [];
+                    // toggle: remove if already in array, add if not
+                    const updated = current.includes(value)
+                      ? current.filter((v) => v !== value)
+                      : [...current, value];
+                    return { ...prev, [key]: updated };
+                  })
+                }
+                // reset all filters back to empty arrays (no selections)
+                onClear={() => setPerfFilters({ branch: [], level: [], semester: [], year: [] })}
               />
 
               {/* KPIs */}
@@ -285,15 +297,12 @@ export default function Dashboard() {
                 <ChartCard title="Moyenne par Matière" className="h-80">
                   {subjectsChart && <Bar data={subjectsChart} options={barOpts} />}
                 </ChartCard>
-
                 <ChartCard title="Évolution des Moyennes" className="h-80">
                   {trendsChart && <Line data={trendsChart} options={lineOpts} />}
                 </ChartCard>
-
                 <ChartCard title="Taux de Réussite par Filière" className="h-80">
                   {branchesChart && <Bar data={branchesChart} options={barOpts} />}
                 </ChartCard>
-
                 <ChartCard title="Moyenne par Niveau" className="h-80">
                   {levelsChart && <Bar data={levelsChart} options={barOpts} />}
                 </ChartCard>
@@ -311,8 +320,18 @@ export default function Dashboard() {
                 filters={attFilters}
                 options={attOptions}
                 config={ATT_FILTER_CONFIG}
-                onChange={(key, value) => setAttFilters((p) => ({ ...p, [key]: value }))}
-                onClear={() => setAttFilters({ day: "", month: "", semester: "", year: "", zone: "" })}
+                // same toggle logic as performance: add value if not selected, remove if already selected
+                onChange={(key, value) =>
+                  setAttFilters((prev) => {
+                    const current = prev[key] || [];
+                    const updated = current.includes(value)
+                      ? current.filter((v) => v !== value)
+                      : [...current, value];
+                    return { ...prev, [key]: updated };
+                  })
+                }
+                // reset all attendance filters back to empty arrays
+                onClear={() => setAttFilters({ day: [], month: [], semester: [], year: [], zone: [] })}
               />
 
               {/* KPI */}

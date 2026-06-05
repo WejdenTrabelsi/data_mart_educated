@@ -1,28 +1,39 @@
-import { Filter, X } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Filter, X, ChevronDown } from "lucide-react";
 
 interface FilterBarProps {
-  filters: { [key: string]: string }; //options (branch, semester,year..)
-  options: { [key: string]: string[] }; //aptions in the filter sciences math ...
-  onChange: (key: string, value: string) => void; //fn passed from parent when user picks a value parent updates state
-  onClear: () => void; //fn passed from parent when user click Réinitialiser parent resets all filters
+  filters: { [key: string]: string[] };
+  options: { [key: string]: string[] };
+  onChange: (key: string, value: string) => void;
+  onClear: () => void;
   config: { key: string; label: string; optionsKey?: string }[];
-  //config is a list of filter definitions used to build the UI dynamically
-  //[ ] means it's an array of objects
 }
 
 export default function FilterBar({ filters, options, onChange, onClear, config }: FilterBarProps) {
-  //check if any filter is active
-  const hasActiveFilters = Object.values(filters).some(v => v !== "");
-  //the .some(v => v !== "") Returns true if at least one value is not empty. This decides whether to show the "Réinitialiser" button.
+  const [openKey, setOpenKey] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const hasActiveFilters = Object.values(filters).some((arr) => arr.length > 0);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpenKey(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-4 mb-6">
+    <div className="bg-white rounded-2xl shadow-lg p-4 mb-6" ref={containerRef}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2 text-gray-700">
           <Filter size={18} />
           <span className="font-semibold">Filtres</span>
         </div>
-        {hasActiveFilters && ( //only show the clear button if at least one filter is active (&&)
+        {hasActiveFilters && (
           <button
             onClick={onClear}
             className="flex items-center gap-1 text-sm text-red-500 hover:text-red-600"
@@ -34,26 +45,67 @@ export default function FilterBar({ filters, options, onChange, onClear, config 
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-        {config.map(({ key, label, optionsKey }) => { //loop through the cofig array (for each item a dropdown)
-          // Use optionsKey if provided, otherwise fall back to key
+        {config.map(({ key, label, optionsKey }) => {
           const lookupKey = optionsKey ?? key;
           const dropdownOptions = options[lookupKey] || [];
+          const selectedValues = filters[key] || [];
+          const isOpen = openKey === key;
 
           return (
-            <div key={key}>
-              <label className="block text-xs text-gray-500 mb-1">{label}</label>
-              <select
-                value={filters[key] || ""} //he dropdown shows the current filter value. If none, show empty (which maps to "Tous").
-                onChange={(e) => onChange(key, e.target.value)} //when user picks smth call the parent's onChange with key(which filer eg branch) and e.target.value (what was picked example eco)
-                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary"
+            <div key={key} className="relative">
+              <label className="block text-xs text-gray-500 mb-1">
+                {label}
+                {selectedValues.length > 0 && (
+                  <span className="ml-1 text-primary font-semibold">({selectedValues.length})</span>
+                )}
+              </label>
+
+              {/* Trigger button */}
+              <button
+                type="button"
+                onClick={() => setOpenKey(isOpen ? null : key)}
+                className={`w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl border text-sm bg-gray-50 hover:bg-gray-100 transition ${
+                  isOpen ? "border-primary ring-1 ring-primary" : "border-gray-200"
+                }`}
               >
-                <option value="">Tous</option> {/*if empty Tous */}
-                {dropdownOptions.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt}
-                  </option>
-                ))}
-              </select>
+                <span className="truncate text-gray-700">
+                  {selectedValues.length === 0
+                    ? "Tous"
+                    : selectedValues.length === 1
+                    ? selectedValues[0]
+                    : `${selectedValues.length} sélectionnés`}
+                </span>
+                <ChevronDown
+                  size={14}
+                  className={`flex-shrink-0 text-gray-400 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {/* Dropdown panel */}
+              {isOpen && (
+                <div className="absolute z-50 mt-1 w-full min-w-max bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                  {dropdownOptions.length === 0 ? (
+                    <p className="text-xs text-gray-400 px-3 py-2">Aucune option</p>
+                  ) : (
+                    <div className="max-h-48 overflow-y-auto p-1">
+                      {dropdownOptions.map((opt) => (
+                        <label
+                          key={opt}
+                          className="flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-50 text-sm text-gray-700"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedValues.includes(opt)}
+                            onChange={() => onChange(key, opt)}
+                            className="accent-primary"
+                          />
+                          {opt}
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           );
         })}
